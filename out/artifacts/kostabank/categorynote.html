@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .category_note{
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 445px;
+            height: auto;
+        }
+        .category_note>.note_menu{
+            box-sizing: border-box;
+            width: 20%;
+            height: auto;
+            min-height: 445px;
+            float: left;
+        }
+        .category_note>.note_menu>div{
+            box-sizing: border-box;
+            width: 100%;
+            height: auto;
+            min-height: 50px;
+            text-align: center;
+            border-bottom: 3px solid;
+            padding: 15px;
+            cursor: pointer;
+        }
+        .category_note>.note_content{
+            box-sizing: border-box;
+            width: 60%;
+            padding: 10px;
+            height: auto;
+            float: left;
+            border-left: 3px solid;
+        }
+        .category_note>.note_content>.legend{
+            box-sizing: border-box;
+            position: relative;
+            top: 62px;
+            left: 20px;
+            width: 70px;
+            height: 20px;
+            text-align: center;
+            background-color: white;
+            font-weight: bold;
+        }
+        .category_note>.note_content>.note_content_detail_info{
+            font-size: large;
+            padding: 15px;
+        }
+        .category_note>.note_content>.note_content_detail_info>.answer_percent{
+            font-size: small;
+            margin-left: 50px;
+        }
+        .category_note>.note_content>.note_content_detail_info>.answer{
+            color: red;
+            float: right;
+            margin-right: 50px;
+        }
+        .category_note>.note_content>.note_content_detail_question{
+            width:100%; height: auto; box-sizing: border-box; border: 3px solid; padding: 10px;
+        }
+        .category_note>.note_content>.note_content_detail_question>.question{
+            height: 276px;
+            background: url("./images/2018010102q.PNG") no-repeat;
+        }
+        .category_note>.note_content>.note_content_detail_question>.explanation{
+            height: 72px;
+            background: url("./images/2018010102s.PNG") no-repeat;
+        }
+        .category_note>.note_content>.paging{
+            box-sizing: border-box;
+            height: 50px;
+            text-align: center;
+            padding: 10px;
+        }
+        .category_note>.btn_area{
+            box-sizing: border-box;
+            width: 20%;
+            float: left;
+        }
+        .category_note>.btn_area>.btn_delete{
+            position: relative;
+            top: 30px;
+            width: 100px;
+            padding: 10px;
+            text-align: center;
+            font-size: large;
+            border: 2px solid;
+            cursor: pointer;
+        }
+
+    </style>
+    <script>
+        $(function () {
+            let Cheight = $('.note_content').height();
+            $('.mycategory_contents').css({'height':Cheight+19+'px'});
+
+            let $noteMenuObj = $(".note_menu>div");
+            $noteMenuObj.click(function (event) {
+                $noteMenuObj.css({"font-weight":"normal"});
+                $(event.target).css({"font-weight":"bold"});
+            });
+            $(".note_menu>div:nth-child(1)").trigger("click");
+        });
+
+    </script>
+</head>
+<body>
+    <div class="category_note">
+        <div class="note_menu">
+            <div>정보처리기사</div>
+            <div>SQLD</div>
+            <div>JAVA</div>
+        </div>
+        <div class="note_content">
+            <div class="legend">문 제</div>
+            <div class="note_content_detail_info">2020년 1회 정보처리기사 1과목 19번<span class="answer_percent">(정답률: 37%)</span>  <span class="answer"> 답 : 4</span></div>
+            <div class="note_content_detail_question"><div class="question"></div> <div class="explanation"></div></div>
+            <div class="paging">◀◀  ◀  1  2  3  4  ▶  ▶▶</div>
+        </div>
+        <div class="btn_area">
+            <div class="btn_delete">삭제하기</div>
+        </div>
+    </div>
+</body>
+</html>

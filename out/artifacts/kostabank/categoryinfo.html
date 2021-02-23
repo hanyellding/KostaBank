@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    .category_info{
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+    }
+    .myinfo_attr{
+        box-sizing: border-box;
+        width: 25%;
+        height: auto;
+        min-height: 445px;
+        float: left;
+        text-align: right;
+        padding: 50px 30px 50px 0;
+    }
+    .myinfo_attr>div{
+        box-sizing: border-box;
+        border: 0;
+        height: calc(340px/5);
+        font-weight: bold;
+        font-size: large;
+    }
+    .myinfo_value{
+        box-sizing: border-box;
+        width: 50%;
+        height: auto;
+        min-height: 445px;
+        border: 0;
+        float: left;
+        text-align: left;
+        padding: 50px 0 50px 30px;
+    }
+    .myinfo_value>div{
+        box-sizing: border-box;
+        border: 0;
+        height: calc(340px/5);
+        font-size: large;
+    }
+    .myinfo_value>div>input{
+        box-sizing: border-box;
+        border: 0;
+        background-color: silver;
+        width: 300px;
+        height: 25px;
+    }
+    .myinfo_btn{
+        box-sizing: border-box;
+        width: 25%;
+        height: auto;
+        min-height: 445px;
+        border: 0;
+        float: left;
+        text-align: right;
+        padding: 50px;
+    }
+    .myinfo_btn>div.btn_mod{
+        position: relative;
+        top: 270px;
+        width: 100px;
+        padding: 10px;
+        text-align: center;
+        font-size: large;
+        border: 2px solid;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="category_info">
+        <div class="myinfo_attr">
+            <div class="attr_id">
+                아이디
+            </div>
+            <div class="attr_email">
+                이메일
+            </div>
+            <div class="attr_nick">
+                닉네임
+            </div>
+            <div class="attr_pwd">
+                비밀번호
+            </div>
+            <div class="attr_pwd2">
+                비밀번호 확인
+            </div>
+        </div>
+        <div class="myinfo_value">
+            <div class="value_id">
+                wonji
+            </div>
+            <div class="value_email">
+                wonji@kosta.com
+            </div>
+            <div class="value_nick">
+                원지
+            </div>
+            <div class="value_pwd">
+                <input type="text">
+            </div>
+            <div class="value_pwd2">
+                <input type="text">
+            </div>
+        </div>
+        <div class="myinfo_btn">
+            <div class="btn_mod">수정하기</div>
+        </div>
+    </div>
+</body>
+</html>

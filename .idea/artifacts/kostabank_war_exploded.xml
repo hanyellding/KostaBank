@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="kostabank:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/kostabank</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="kostabank/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="kostabank" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="JAX-WS-Apache Axis" />
+          <element id="file-copy" path="$USER_HOME$/Desktop/자바library/cos-05Nov2002.jar" />
+          <element id="file-copy" path="$USER_HOME$/Desktop/자바library/jquery-1.11.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/Desktop/자바library/jackson-core-2.11.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/Desktop/자바library/jackson-databind-2.11.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/Desktop/자바library/jackson-annotations-2.11.2.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

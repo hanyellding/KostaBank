@@ -1,0 +1,148 @@
+*{
+    font-family: 'Do Hyeon', sans-serif;
+    margin: 0;
+    padding:0;
+    list-style: none;
+    text-decoration: none;
+}
+body {
+    background-image: url("./images/pattern.jpg");
+}
+.mainpage {
+    width: 100%;
+    height: 100%;
+}
+.sidebar {
+    position: fixed;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: rgb(136, 136, 136);
+    transition: all .5s ease;
+}
+.sidebar>div.sidebar_header {
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+    background: rgb(90, 90, 90);
+    user-select: none;
+}
+ul.login-Info {
+    text-align: initial;
+    line-height: 25px;
+    font-size: 16px;
+    padding-left: 20px;
+    list-style: none;
+}
+.logout-div {
+    line-height: 30px;
+    padding-bottom: 10px;
+}
+a.logout-btn {
+    color: white;
+    padding-left: 147px;
+    font-size: 16px;
+}
+#logout-icon {
+    padding-left: 5px;
+}
+#user-icon {
+    padding-right: 10px;
+}
+.sidebar ul a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(49, 49, 49, 0.1);
+    transition: .4s;
+}
+ul li:hover a {
+    padding-left: 50px;
+}
+#check {
+    display: none;
+}
+label #btn, label #cancel {
+    position: absolute;
+    cursor: pointer;
+    background: rgb(90, 90, 90);
+    border-radius: 3px;
+}
+label #btn {
+    left: 80px;
+    top: 50px;
+    font-size: 35px;
+    color: white;
+    padding: 6px 12px;
+    transition: all .5s;
+}
+label #cancel {
+    z-index: 1111;
+    left: -195px;
+    top: 16px;
+    font-size: 30px;
+    color: white;
+    padding: 4px 9px;
+    transition: all .5s ease;
+}
+#check:checked~.sidebar {
+    left: 0px;
+}
+#check:checked~label #btn {
+    left: 250px;
+    opacity: 0;
+    pointer-events: none;
+}
+#check:checked~label #cancel {
+    left: 195px;
+}
+div#test {
+    width: 900px;
+    height: 500px;
+    margin: 50px auto;
+    background: rgba(143, 143, 143, 0.3);
+    border-radius: 20px;
+}
+.header-icon {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+}
+img#logo {
+    width: 200px;
+}
+#logo {
+    margin-top: 30px;
+}
+#alarm {
+    margin-top: 20px;
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    font-size: 50px;
+}
+
+@media(max-width: 928px){
+    #logo{
+        position: absolute;
+        left:375px;
+        width:165pc;
+        margin: 20px auto;
+        text-align: center;
+    }
+    #alarm{
+        position:absolute;
+        left: 815px;
+        width: 50px;
+        margin: 20px;
+    }
+}
