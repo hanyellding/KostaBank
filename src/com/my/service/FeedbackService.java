@@ -3,6 +3,7 @@ package com.my.service;
 import com.my.dao.FeedbackDAO;
 import com.my.dao.FeedbackDAOOracle;
 import com.my.exception.FindException;
+import com.my.vo.Feedback;
 import com.my.vo.Qa;
 import com.my.vo.Report;
 import java.util.List;
@@ -25,5 +26,9 @@ public class FeedbackService {
 
     public List<Report> reportAll(int page, int num) throws  FindException{
         return dao.ReportAll(page,num);
+    }
+
+    public List<Feedback> feedbacksById(String user_id) throws Exception{
+        return dao.selectFeedbackById(user_id);
     }
 }

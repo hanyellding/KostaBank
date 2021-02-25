@@ -20,7 +20,7 @@ public interface FeedbackDAO {
      * @return 피드백 객체
      * @throws FindException 아이디에 해당하는 유저가 없으면 반환
      */
-    Feedback selectFeedbackById(String user_id) throws FindException;
+    List<Feedback> selectFeedbackById(String user_id) throws Exception;
 
     /**
      * 1:1문의에 대한 내용

@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16e17220-2afb-4179-8d98-175bea7de85e" name="Default Changelist" comment="" />
+    <list default="true" id="16e17220-2afb-4179-8d98-175bea7de85e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/kostabank_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/kostabank_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/AddEmailServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/AddEmailServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/EmailDupChkServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/EmailDupChkServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/UserDAOOracle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/UserDAOOracle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/categorynote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/categorynote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/AddEmailServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/AddEmailServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/EmailDupChkServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/EmailDupChkServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/UserDAOOracle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/UserDAOOracle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/controller/AddEmailServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/controller/AddEmailServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/controller/EmailDupChkServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/controller/EmailDupChkServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/dao/UserDAOOracle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/dao/UserDAOOracle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/service/UserService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +33,18 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="D:\kosta\MyEE\kostabank\web\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1oWHMkNuIrXJP3NwdkmNIhupI2u" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />

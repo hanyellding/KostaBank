@@ -215,7 +215,7 @@ public class UserDAOOracle implements UserDAO {
     }
 
     @Override
-    public void insertEmail(String email) throws AddException {
+    public String insertEmail(String email) throws AddException {
         Connection con = null;
         try {
             con = MyConnection.getConnection();
@@ -238,11 +238,12 @@ public class UserDAOOracle implements UserDAO {
             pstmt.setString(1,email);
             pstmt.setString(2,numStr);
             pstmt.executeUpdate();
+            return numStr;
         } catch (SQLException e) {
             if(e.getErrorCode() == 1){
                 throw new AddException("이미 인증번호가 발송된 이메일 입니다.");
             }else {
-                e.printStackTrace();
+                throw new AddException(e.getMessage());
             }
         } finally {
             MyConnection.close(con,pstmt);
@@ -274,7 +275,7 @@ public class UserDAOOracle implements UserDAO {
     }
 
     @Override
-    public void updateByEmail(String user_email) throws ModifyException {
+    public String updateByEmail(String user_email) throws ModifyException {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
@@ -303,6 +304,7 @@ public class UserDAOOracle implements UserDAO {
         }finally {
             MyConnection.close(con, pstmt);
         }
+        return numStr;
     }
 
     @Override
@@ -321,6 +323,30 @@ public class UserDAOOracle implements UserDAO {
             int rowcnt = pstmt.executeUpdate();
             if(rowcnt !=1){
                 throw new RemoveException("삭제실패: 아이디에 해당 고객이 없습니다");
+            }
+        } catch (SQLException e) {
+            throw new RemoveException(e.getMessage());
+        }finally {
+            MyConnection.close(con,pstmt);
+        }
+    }
+
+    @Override
+    public void deleteEmail(String email) throws RemoveException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = MyConnection.getConnection();
+        } catch (Exception e) {
+            throw new RemoveException(e.getMessage());
+        }
+        String deleteSQL = "DELETE FROM email_tmp WHERE email=?";
+        try {
+            pstmt = con.prepareStatement(deleteSQL);
+            pstmt.setString(1,email);
+            int rowcnt = pstmt.executeUpdate();
+            if(rowcnt !=1){
+                throw new RemoveException("삭제실패: 해당 이메일이 없습니다");
             }
         } catch (SQLException e) {
             throw new RemoveException(e.getMessage());

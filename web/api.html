@@ -311,6 +311,17 @@
                 return false;
             });
 
+            let timer = setInterval(function () {
+                $.ajax({
+                    url: './header',
+                    method: 'post',
+                    dataType: "text",
+                    success(data){
+                        $('.headerdiv').html(data);
+                    }
+                });
+            },31*60*1000);
+
         });
 
     </script>
@@ -558,6 +569,13 @@
 </form>
 <div>  실패했을때 -1</div>
 <div class="boardlistdiv"></div>
+
+<hr><h1>header // 로그인 후 진행</h1>
+<form class="header">
+    <input type="submit">
+</form>
+<div>  로그인 아닐때 -1 // 피드백 알림이 하나도 없을 때 -2</div>
+<div class="headerdiv"></div>
 
 </body>
 </html>

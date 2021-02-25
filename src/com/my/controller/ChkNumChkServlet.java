@@ -2,6 +2,7 @@ package com.my.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.my.exception.FindException;
+import com.my.exception.RemoveException;
 import com.my.service.UserService;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,7 @@ public class ChkNumChkServlet extends HttpServlet {
                 jsonMap.put("status", 1);
                 String jsonStr = mapper.writeValueAsString(jsonMap);
                 out.print(jsonStr);
+                service.removeEmailById(email);
             }
             else{
                 jsonMap.put("status", -1);
@@ -39,6 +41,11 @@ public class ChkNumChkServlet extends HttpServlet {
             }
         } catch (FindException e) {
             jsonMap.put("status", -2);
+            jsonMap.put("msg",e.getMessage());
+            String jsonStr = mapper.writeValueAsString(jsonMap);
+            out.print(jsonStr);
+        } catch (RemoveException e) {
+            jsonMap.put("status", -3);
             jsonMap.put("msg",e.getMessage());
             String jsonStr = mapper.writeValueAsString(jsonMap);
             out.print(jsonStr);

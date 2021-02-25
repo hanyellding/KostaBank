@@ -62,7 +62,7 @@ public interface UserDAO {
      * @param email 회원가입에 입력한 이메일
      * @throws AddException 이미 메일을 보냈고 5분이 안지난 경우
      */
-    void insertEmail(String email) throws AddException;
+    String insertEmail(String email) throws AddException;
 
     /**
      * 유저 수정
@@ -75,8 +75,9 @@ public interface UserDAO {
      * 아이디 비밀번호 찾기
      * @param user_email 회원가입할때 입력한 이메일
      * @throws ModifyException 이메일이 존재하지 않는경우, 수정에 실패한 경우
+     * @return
      */
-    void updateByEmail(String user_email) throws ModifyException;
+    String updateByEmail(String user_email) throws ModifyException;
 
 
 
@@ -86,5 +87,12 @@ public interface UserDAO {
      * @throws RemoveException 삭제가 안될때
      */
     void delete(String user_id) throws RemoveException;
+
+    /**
+     * tmp 이메일 삭제
+     * @param email 입력한 이메일
+     * @throws RemoveException 삭제가 안될때
+     */
+    void deleteEmail(String email) throws RemoveException;
 
 }

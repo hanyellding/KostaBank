@@ -16,8 +16,45 @@ import java.util.List;
 
 public class FeedbackDAOOracle implements FeedbackDAO {
     @Override
-    public Feedback selectFeedbackById(String user_id) throws FindException {
-        return null;
+    public List<Feedback> selectFeedbackById(String user_id) throws Exception {
+        Connection con =null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = MyConnection.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+
+        String selectByIdSQL = "select * from ( select report_id, report_id id, report_title, report_sol_wdate, report_new from report where report_user = ? and report_new =1 \n" +
+                "union all select qa_id,-1, qa_title, qa_sol_wdate, qa_new from qa where user_id= ? and qa_new =1 order by report_sol_wdate desc) where rownum<=10";
+        List<Feedback> all = new ArrayList<>();
+        try {
+            pstmt = con.prepareStatement(selectByIdSQL);
+            pstmt.setString(1,user_id);
+            pstmt.setString(2,user_id);
+            rs = pstmt.executeQuery();
+            int code;
+            while(rs.next()){
+                if(rs.getString("id").equals("-1")){
+                    code = 0;
+                }else{code=1;}
+                Feedback f = new Feedback(code,rs.getString("report_id"),rs.getString("report_title"),rs.getString("report_sol_wdate"));
+
+                all.add(f);
+            }
+            if(all.size() == 0){
+                throw new Exception("정보가 하나도 없습니다.");
+            }
+            return all;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw  new Exception(e.getMessage());
+        }finally {
+            MyConnection.close(con,pstmt,rs);
+        }
     }
 
     @Override

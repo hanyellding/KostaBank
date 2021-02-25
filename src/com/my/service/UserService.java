@@ -6,6 +6,7 @@ import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.exception.ModifyException;
 import com.my.exception.RemoveException;
+import com.my.vo.Feedback;
 import com.my.vo.User;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public class UserService {
     public void findByNick(String user_nick) throws FindException{
         dao.selectByNick(user_nick);
     }
-    public void findByEmail(String user_email) throws FindException{
-        dao.selectByEmail(user_email);
+    public User findByEmail(String user_email) throws FindException{
+        return dao.selectByEmail(user_email);
     }
 
     public String findTmpByEmail(String email) throws FindException{
@@ -31,8 +32,8 @@ public class UserService {
     public void add(User user) throws AddException{
         dao.insert(user);
     }
-    public void addEmail(String email) throws AddException{
-        dao.insertEmail(email);
+    public String addEmail(String email) throws AddException{
+        return dao.insertEmail(email);
     }
     public void modifyUser(User user) throws ModifyException{
         dao.update(user);
@@ -51,11 +52,16 @@ public class UserService {
         }
     }
 
-    public void modifyPwdByEmail(String user_email) throws ModifyException{
-        dao.updateByEmail(user_email);
+    public String modifyPwdByEmail(String user_email) throws ModifyException{
+        return dao.updateByEmail(user_email);
     }
 
     public void removeById(String user_id) throws RemoveException{
         dao.delete(user_id);
     }
+    public void removeEmailById(String email) throws RemoveException{
+        dao.deleteEmail(email);
+    }
+
+
 }

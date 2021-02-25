@@ -4,17 +4,15 @@ public class Feedback {
     private int feedback_sort;  //0 은 qa  1은 report
     private String feedback_id; // 종류와 아이디를 같이 받아야함
     private String feedback_title;
-    private int feedback_status;
     private String feedback_date;
 
     public Feedback() {
     }
 
-    public Feedback(int feedback_sort, String feedback_id, String feedback_title, int feedback_status, String feedback_date) {
+    public Feedback(int feedback_sort, String feedback_id, String feedback_title, String feedback_date) {
         this.feedback_sort = feedback_sort;
         this.feedback_id = feedback_id;
         this.feedback_title = feedback_title;
-        this.feedback_status = feedback_status;
         this.feedback_date = feedback_date;
     }
 
@@ -42,14 +40,6 @@ public class Feedback {
         this.feedback_title = feedback_title;
     }
 
-    public int getFeedback_status() {
-        return feedback_status;
-    }
-
-    public void setFeedback_status(int feedback_status) {
-        this.feedback_status = feedback_status;
-    }
-
     public String getFeedback_date() {
         return feedback_date;
     }
@@ -64,7 +54,6 @@ public class Feedback {
                 "feedback_sort=" + feedback_sort +
                 ", feedback_id='" + feedback_id + '\'' +
                 ", feedback_title='" + feedback_title + '\'' +
-                ", feedback_status=" + feedback_status +
                 ", feedback_date='" + feedback_date + '\'' +
                 '}';
     }
