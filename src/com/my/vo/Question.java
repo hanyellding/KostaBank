@@ -9,6 +9,7 @@ public class Question {
     private int correct_answer_count;
     private int question_ox;
     private int mn_total;
+    private String mn_id;
 
     public Question() {
     }
@@ -88,6 +89,14 @@ public class Question {
         this.mn_total = mn_total;
     }
 
+    public String getMn_id() {
+        return mn_id;
+    }
+
+    public void setMn_id(String mn_id) {
+        this.mn_id = mn_id;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
@@ -99,6 +108,7 @@ public class Question {
                 ", correct_answer_count=" + correct_answer_count +
                 ", question_ox=" + question_ox +
                 ", mn_total=" + mn_total +
+                ", mn_id='" + mn_id + '\'' +
                 '}';
     }
 }

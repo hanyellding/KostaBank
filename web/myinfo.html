@@ -84,6 +84,19 @@
                     $(".mycategory_contents").load($category+".html");
                 });
             $(".mainbox>.category>.categoryinfo").trigger("click");
+
+            $('.login>input[type=submit]').click(function () {
+                $.ajax({
+                    url: './login',
+                    method: 'post',
+                    data: {"user_id": $('.login>label>.user_id').val(),
+                        "user_pwd": $('.login>label>.user_pwd').val()},
+                    dataType: "text",
+                    success(data){
+                    }
+                });
+                return false;
+            });
         });
 
     </script>
@@ -142,6 +155,16 @@
         </div>
     </div>
     <div style="height: 50px;"></div>
+    <hr><h1>login</h1>
+    <form class="login">
+        <label> user_id
+            <input type="text" class="user_id"><br>
+        </label>
+        <label> user_pwd
+            <input type="text" class="user_pwd"><br>
+        </label>
+        <input type="submit">
+    </form>
 </div>
 </body>
 </html>

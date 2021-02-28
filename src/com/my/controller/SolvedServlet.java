@@ -42,6 +42,7 @@ public class SolvedServlet extends HttpServlet {
                 jacksonMap.put("explanation",question.getExplanation());
                 jacksonMap.put("correct_percent",((int)(((double)question.getCorrect_answer_count()/(double)question.getTotal_answer_count())*100)));
                 jacksonMap.put("question_ox",question.getQuestion_ox());
+                jacksonMap.put("mn_V",question.getMn_id());
                 jacksonList.add(jacksonMap);
             }
             String jsonStr = mapper.writeValueAsString(jacksonList);

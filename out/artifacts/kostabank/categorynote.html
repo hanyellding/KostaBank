@@ -32,6 +32,7 @@
             width: 60%;
             padding: 10px;
             height: auto;
+            min-height: 445px;
             float: left;
             border-left: 3px solid;
         }
@@ -63,18 +64,23 @@
             width:100%; height: auto; box-sizing: border-box; border: 3px solid; padding: 10px;
         }
         .category_note>.note_content>.note_content_detail_question>.question{
-            height: 276px;
-            background: url("./images/question/2018010102q.PNG") no-repeat;
+            width: 100%;
         }
         .category_note>.note_content>.note_content_detail_question>.explanation{
-            height: 72px;
-            background: url("./images/question/2018010102s.PNG") no-repeat;
+            width: 100%;
         }
         .category_note>.note_content>.paging{
             box-sizing: border-box;
             height: 50px;
             text-align: center;
             padding: 10px;
+        }
+        .category_note>.note_content>.paging>span{
+            cursor: pointer;
+        }
+        .category_note>.note_content>.paging>div{
+            display: none;
+            cursor: pointer;
         }
         .category_note>.btn_area{
             box-sizing: border-box;
@@ -95,15 +101,194 @@
     </style>
     <script>
         $(function () {
-            let Cheight = $('.note_content').height();
-            $('.mycategory_contents').css({'height':Cheight+19+'px'});
-
             let $noteMenuObj = $(".note_menu>div");
             $noteMenuObj.click(function (event) {
                 $noteMenuObj.css({"font-weight":"normal"});
                 $(event.target).css({"font-weight":"bold"});
             });
             $(".note_menu>div:nth-child(1)").trigger("click");
+            let $detailInfo = $('.note_content_detail_info');
+            let $contentImg = $('.question');
+            let $explanationImg = $('.explanation');
+            let $pagingNumber = $('.paging_number');
+            let num = sessionStorage.getItem("pagingNum");
+            if(num === null){
+                num = 1;
+            }
+            num = parseInt(num);
+            let promisePaging = $.ajax({
+                    url: './mynote',
+                    method: 'post',
+                    data:{"rownum":num},
+                    success(data){
+                        $('.paging>div').css("display", "none");
+                        $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(5,1)+"과목 " +data.question_id.substr(8,2)+"번"
+                            +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span>");
+                        $contentImg.attr("src", "./images/question/"+data.content+".PNG");
+                        $explanationImg.attr("src","./images/question/"+data.explanation+".PNG");
+
+                        let str="";
+                        let total = data.mn_total;
+                        let pagePerTen = Math.ceil(total/10);
+                        let pageLast = total%10;
+                        let countTen;
+                        if(num !== 1){
+                            $('.paging>.prev').css("display", "inline-block");
+                        }
+                        if(num !== total){
+                            $('.paging>.next').css("display", "inline-block");
+                        }
+                        if(num >= 11){
+                            $('.paging>.prevDouble').css("display", "inline-block");
+                        }
+                        if((pagePerTen*10 - num)>=10){
+                            $('.paging>.nextDouble').css("display", "inline-block");
+                        }
+                        countTen = Math.ceil(num/10);
+                        if(countTen !== pagePerTen){
+                            for(let i = 1;i<=10;i++){
+                                str+="<span>"+((countTen-1)*10 + i) +"</span>&nbsp";
+                            }
+                        }else{
+                            for(let i =1;i<=pageLast;i++){
+                                str+="<span>"+((countTen-1)*10 + i) +"</span>&nbsp";
+                            }
+                        }
+                        $pagingNumber.html(str);
+                        let p =10;
+                        if(num%10 !== 0){
+                            p = num%10;
+                        }
+                        $('.paging_number>span:nth-child('+p+')').css("color","silver");
+                        sessionStorage.setItem("pagingNum", num);
+                    }
+                });
+            promisePaging.done(pagingFunc);
+            function pagingFunc(){
+                $('.paging_number>span').click(function (event) {
+                    let num = parseInt($(event.target).text());
+                    promisePaging = $.ajax({
+                        url: './mynote',
+                        method: 'post',
+                        data:{"rownum":num},
+                        success(data){
+                            $('.paging>div').css("display", "none");
+                            $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(5,1)+"과목 " +data.question_id.substr(8,2)+"번"
+                                +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span>");
+                            $contentImg.attr("src", "./images/question/"+data.content+".PNG");
+                            $explanationImg.attr("src","./images/question/"+data.explanation+".PNG");
+
+                            let str="";
+                            let total = data.mn_total;
+                            let pagePerTen = Math.ceil(total/10);
+                            let pageLast = total%10;
+                            let countTen;
+                            if(num !== 1){
+                                $('.paging>.prev').css("display", "inline-block");
+                            }
+                            if(num !== total){
+                                $('.paging>.next').css("display", "inline-block");
+                            }
+                            if(num >= 11){
+                                $('.paging>.prevDouble').css("display", "inline-block");
+                            }
+                            if((pagePerTen*10 - num)>=10){
+                                $('.paging>.nextDouble').css("display", "inline-block");
+                            }
+                            countTen = Math.ceil(num/10);
+                            if(countTen !== pagePerTen){
+                                for(let i = 1;i<=10;i++){
+                                    str+="<span>"+((countTen-1)*10 + i) +"</span>&nbsp";
+                                }
+                            }else{
+                                for(let i =1;i<=pageLast;i++){
+                                    str+="<span>"+((countTen-1)*10 + i) +"</span>&nbsp";
+                                }
+                            }
+                            $pagingNumber.html(str);
+                            let p =10;
+                            if(num%10 !== 0){
+                                p = num%10;
+                            }
+                            $('.paging_number>span:nth-child('+p+')').css("color","silver");
+                            sessionStorage.setItem("pagingNum", num);
+                        }
+                    });
+                    promisePaging.done(pagingFunc);
+                });
+
+                }
+            $('.paging>div').click(function (event) {
+                let $clickBtn = $(event.target).attr('class');
+                let n;
+                switch ($clickBtn) {
+                    case  'prevDouble':
+                        n = (Math.ceil(sessionStorage.getItem("pagingNum") / 10) - 2) * 10 + 1;
+                        break;
+                    case 'prev':
+                        n = parseInt(sessionStorage.getItem("pagingNum")) - 1;
+                        break;
+                    case 'next':
+                        n = parseInt(sessionStorage.getItem("pagingNum")) + 1;
+                        break;
+                    case 'nextDouble':
+                        n = (Math.ceil(sessionStorage.getItem("pagingNum") / 10)) * 10 + 1;
+                        break;
+                }
+                $.ajax({
+                    url: './mynote',
+                    method: 'post',
+                    data:{"rownum":n},
+                    success(data){
+                        $('.paging>div').css("display", "none");
+                        $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(5,1)+"과목 " +data.question_id.substr(8,2)+"번"
+                            +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span>");
+                        $contentImg.attr("src", "./images/question/"+data.content+".PNG");
+                        $explanationImg.attr("src","./images/question/"+data.explanation+".PNG");
+
+                        let str="";
+                        let total = data.mn_total;
+                        let pagePerTen = Math.ceil(total/10);
+                        let pageLast = total%10;
+                        let countTen;
+                        if(n !== 1){
+                            $('.paging>.prev').css("display", "inline-block");
+                        }
+                        if(n !== total){
+                            $('.paging>.next').css("display", "inline-block");
+                        }
+                        if(n >= 11){
+                            $('.paging>.prevDouble').css("display", "inline-block");
+                        }
+                        if((pagePerTen*10 - n)>=10){
+                            $('.paging>.nextDouble').css("display", "inline-block");
+                        }
+                        countTen = Math.ceil(n/10);
+                        if(countTen !== pagePerTen){
+                            for(let i = 1;i<=10;i++){
+                                str+="<span>"+((countTen-1)*10 + i) +"</span>&nbsp";
+                            }
+                        }else{
+                            for(let i =1;i<=pageLast;i++){
+                                str+="<span>"+((countTen-1)*10 + i) +"</span>&nbsp";
+                            }
+                        }
+                        $pagingNumber.html(str);
+                        let p =10;
+                        if(n%10 !== 0){
+                            p = n%10;
+                        }
+                        $('.paging_number>span:nth-child('+p+')').css("color","silver");
+                        sessionStorage.setItem("pagingNum", n);
+                        promisePaging.done(pagingFunc);
+                    }
+                });
+            });
+            $explanationImg.on('load',function () {
+                let Cheight = $('.note_content').height();
+                $('.mycategory_contents').css({'height':Cheight+19+'px'});
+            });
+
         });
 
     </script>
@@ -118,12 +303,13 @@
         <div class="note_content">
             <div class="legend">문 제</div>
             <div class="note_content_detail_info">2020년 1회 정보처리기사 1과목 19번<span class="answer_percent">(정답률: 37%)</span>  <span class="answer"> 답 : 4</span></div>
-            <div class="note_content_detail_question"><div class="question"></div> <div class="explanation"></div></div>
-            <div class="paging">◀◀  ◀  1  2  3  4  ▶  ▶▶</div>
+            <div class="note_content_detail_question"><img class="question" alt="question" src=""> <img class="explanation" alt="explanation" src=""></div>
+            <div class="paging"><div class="prevDouble">◀◀&nbsp;</div><div class="prev">◀&nbsp;</div><span class="paging_number"></span><div class="next">▶&nbsp;</div><div class="nextDouble">▶▶</div></div>
         </div>
         <div class="btn_area">
             <div class="btn_delete">삭제하기</div>
         </div>
     </div>
+
 </body>
 </html>

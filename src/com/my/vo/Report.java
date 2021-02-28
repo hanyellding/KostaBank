@@ -11,11 +11,12 @@ public class Report {
     private int report_status;
     private String report_sol_wdate;
     private String report_sol_content;
+    private int report_total;
 
     public Report() {
     }
 
-    public Report(String report_id, User user, Question question, String report_title, String report_content, String report_wdate, int report_new, int report_status, String report_sol_wdate, String report_sol_content) {
+    public Report(String report_id, User user, Question question, String report_title, String report_content, String report_wdate, int report_new, int report_status, String report_sol_wdate, String report_sol_content, int report_total) {
         this.report_id = report_id;
         this.user = user;
         this.question = question;
@@ -26,6 +27,7 @@ public class Report {
         this.report_status = report_status;
         this.report_sol_wdate = report_sol_wdate;
         this.report_sol_content = report_sol_content;
+        this.report_total = report_total;
     }
 
     public String getReport_id() {
@@ -108,6 +110,14 @@ public class Report {
         this.report_sol_content = report_sol_content;
     }
 
+    public int getReport_total() {
+        return report_total;
+    }
+
+    public void setReport_total(int report_total) {
+        this.report_total = report_total;
+    }
+
     @Override
     public String toString() {
         return "Report{" +
@@ -119,8 +129,9 @@ public class Report {
                 ", report_wdate='" + report_wdate + '\'' +
                 ", report_new=" + report_new +
                 ", report_status=" + report_status +
-                ", report_sol_date='" + report_sol_wdate + '\'' +
+                ", report_sol_wdate='" + report_sol_wdate + '\'' +
                 ", report_sol_content='" + report_sol_content + '\'' +
+                ", report_total=" + report_total +
                 '}';
     }
 }

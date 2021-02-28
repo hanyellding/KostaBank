@@ -6,6 +6,7 @@ import com.my.exception.ModifyException;
 import com.my.exception.RemoveException;
 import com.my.sql.MyConnection;
 import com.my.vo.*;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -73,7 +74,7 @@ public class FeedbackDAOOracle implements FeedbackDAO {
         String selectByIdSQL = "select B.rnum, B.* , (select count(*) from qa where user_id= ?) qa from\n" +
                 "    (select rownum as rnum, A.* from (\n" +
                 "        select * from qa q join users u on q.user_id = u.user_id where q.user_id = ? \n" +
-                "        order by q.qa_wdate desc ) A where rownum <=?) B where B.rnum >= ?";
+                "        order by q.qa_status, q.qa_wdate desc ) A where rownum <=?) B where B.rnum >= ?";
         try {
             pstmt = con.prepareStatement(selectByIdSQL);
             pstmt.setString(1,user_id);
@@ -100,7 +101,7 @@ public class FeedbackDAOOracle implements FeedbackDAO {
     }
 
     @Override
-    public Qa QaByQaId(String qa_id) throws FindException {
+    public Qa QaByQaId(String qa_id, int n, int s) throws FindException {
         Connection con =null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -125,6 +126,7 @@ public class FeedbackDAOOracle implements FeedbackDAO {
             User user = new User();
             user.setUser_nickname(rs.getString("user_nickname"));
             qa.setUser(user);
+            NewStatusQaUpdate(con,qa_id,n,s);
             return qa;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -194,7 +196,7 @@ public class FeedbackDAOOracle implements FeedbackDAO {
     }
 
     @Override
-    public Report ReportById(String report_id) throws FindException {
+    public Report ReportById(String report_id, int n , int s) throws FindException {
         Connection con =null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -221,7 +223,8 @@ public class FeedbackDAOOracle implements FeedbackDAO {
             question.setCorrect_answer(rs.getString("correct_answer"));
             question.setExplanation(rs.getString("explanation"));
             Report report = new Report(rs.getString("report_id"),user,question,rs.getString("report_title"),rs.getString("report_content"), rs.getString("report_wdate"),
-                                    rs.getInt("report_new"),rs.getInt("report_status"), rs.getString("report_sol_wdate"),rs.getString("report_sol_content"));
+                                    rs.getInt("report_new"),rs.getInt("report_status"), rs.getString("report_sol_wdate"),rs.getString("report_sol_content"), 1);
+            NewStatusReportUpdate(con,report_id,n,s);
             return report;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -244,10 +247,10 @@ public class FeedbackDAOOracle implements FeedbackDAO {
             throw new FindException(e.getMessage());
         }
 
-        String selectByIdSQL = "select B.rnum, B.* , (select count(*) from qa) qa from\n" +
+        String selectByIdSQL = "select B.rnum, B.* , (select count(*) from report) total from\n" +
                 "    (select rownum as rnum, A.* from (\n" +
                 "        select * from report r join users u on r.report_user = u.user_id join question q on r.report_question_id = q.question_id \n" +
-                "        order by r.report_wdate desc ) A where rownum <=?) B where B.rnum >= ?";
+                "        order by r.report_status, r.report_wdate desc ) A where rownum <=?) B where B.rnum >= ?";
         List<Report> all = new ArrayList<>();
         try {
             pstmt = con.prepareStatement(selectByIdSQL);
@@ -262,7 +265,7 @@ public class FeedbackDAOOracle implements FeedbackDAO {
                 question.setCorrect_answer(rs.getString("correct_answer"));
                 question.setExplanation(rs.getString("explanation"));
                 Report report = new Report(rs.getString("report_id"),user,question,rs.getString("report_title"),rs.getString("report_content"), rs.getString("report_wdate"),
-                        rs.getInt("report_new"),rs.getInt("report_status"), rs.getString("report_sol_wdate"),rs.getString("report_sol_content"));
+                        rs.getInt("report_new"),rs.getInt("report_status"), rs.getString("report_sol_wdate"),rs.getString("report_sol_content"),rs.getInt("total"));
 
                 all.add(report);
             }
@@ -289,7 +292,67 @@ public class FeedbackDAOOracle implements FeedbackDAO {
     }
 
     @Override
+    public void ReportSolUpdate(String report_id, String content) throws ModifyException {
+        Connection con =null;
+        PreparedStatement pstmt = null;
+        try {
+            con = MyConnection.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ModifyException(e.getMessage());
+        }
+
+        String updateByIdSQL = "update report set report_sol_content = ?,report_sol_wdate = current_timestamp , report_new =1 ,report_status=2 where report_id= ?";
+        try {
+            pstmt = con.prepareStatement(updateByIdSQL);
+            pstmt.setString(1, content);
+            pstmt.setString(2, report_id);
+            int rowcnt = pstmt.executeUpdate();
+            if(rowcnt !=1){
+                throw new ModifyException("수정실패: 해당 신고아이디가 없습니다");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new ModifyException(e.getMessage());
+        }finally {
+            MyConnection.close(con,pstmt);
+        }
+    }
+
+    @Override
     public void ReportDelete(String report_id) throws RemoveException {
 
+    }
+
+    public void NewStatusReportUpdate(Connection con,String report_id, int n, int s){
+        PreparedStatement pstmt = null;
+        String updateByIdSQL = "update report set report_new = ? , report_status=? where report_id= ?";
+        try {
+            pstmt = con.prepareStatement(updateByIdSQL);
+            pstmt.setInt(1,n);
+            pstmt.setInt(2,s);
+            pstmt.setString(3, report_id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            MyConnection.close(con,pstmt);
+        }
+    }
+
+    public void NewStatusQaUpdate(Connection con,String qa_id, int n, int s){
+        PreparedStatement pstmt = null;
+        String updateByIdSQL = "update qa set qa_new = ? , qa_status=? where qa_id= ?";
+        try {
+            pstmt = con.prepareStatement(updateByIdSQL);
+            pstmt.setInt(1,n);
+            pstmt.setInt(2,s);
+            pstmt.setString(3, qa_id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            MyConnection.close(con,pstmt);
+        }
     }
 }

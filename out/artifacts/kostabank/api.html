@@ -248,7 +248,9 @@
                 $.ajax({
                     url: './qa',
                     method: 'post',
-                    data: {"qa_id": $('.qa>label>.qa_id').val()},
+                    data: {"qa_id": $('.qa>label>.qa_id').val(),
+                        "n": $('.qa>label>.n').val(),
+                        "s": $('.qa>label>.s').val()},
                     dataType: "text",
                     success(data){
                         $('.qadiv').html(data);
@@ -261,10 +263,26 @@
                 $.ajax({
                     url: './report',
                     method: 'post',
-                    data: {"report_id": $('.report>label>.report_id').val()},
+                    data: {"report_id": $('.report>label>.report_id').val(),
+                        "n": $('.report>label>.n').val(),
+                        "s": $('.report>label>.s').val()},
                     dataType: "text",
                     success(data){
                         $('.reportdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
+            $('.addreportsol>input[type=submit]').click(function () {
+                $.ajax({
+                    url: './addreportsol',
+                    method: 'post',
+                    data: {"report_id": $('.addreportsol>label>.report_id').val(),
+                        "content": $('.addreportsol>label>.content').val()},
+                    dataType: "text",
+                    success(data){
+                        $('.addreportsoldiv').html(data);
                     }
                 });
                 return false;
@@ -306,6 +324,18 @@
                     dataType: "text",
                     success(data){
                         $('.boardlistdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
+            $('.header>input[type=submit]').click(function () {
+                $.ajax({
+                    url: './header',
+                    method: 'post',
+                    dataType: "text",
+                    success(data){
+                        $('.headerdiv').html(data);
                     }
                 });
                 return false;
@@ -519,9 +549,15 @@
     <label> qa_id
         <input type="text" class="qa_id"><br>
     </label>
+    <label> n
+        <input type="text" class="n"><br>
+    </label>
+    <label> s
+        <input type="text" class="s"><br>
+    </label>
     <input type="submit">
 </form>
-<div>  실패했을때 -1</div>
+<div>  실패했을때 -1  <br> 오른쪽 위 알림 클릭할때 n,s = 0,2 <br> 관리자 리스트에서 가져올때 n,s = 0, 1<</div>
 <div class="qadiv"></div>
 
 <hr><h1>report</h1>
@@ -529,9 +565,15 @@
     <label> report_id
         <input type="text" class="report_id"><br>
     </label>
+    <label> n
+        <input type="text" class="n"><br>
+    </label>
+    <label> s
+        <input type="text" class="s"><br>
+    </label>
     <input type="submit">
 </form>
-<div>  실패했을때 -1</div>
+<div>  실패했을때 -1 <br> 오른쪽 위 알림 클릭할때 n,s = 0,2 <br> 관리자 리스트에서 가져올때 n,s = 0, 1</div>
 <div class="reportdiv"></div>
 
 <hr><h1>reportlist</h1>
@@ -546,6 +588,19 @@
 </form>
 <div>  실패했을때 -1</div>
 <div class="reportlistdiv"></div>
+
+<hr><h1>addreportsol</h1>
+<form class="addreportsol">
+    <label> report_id
+        <input type="text" class="report_id"><br>
+    </label>
+    <label> content
+        <input type="text" class="content"><br>
+    </label>
+    <input type="submit">
+</form>
+<div>  실패했을때 -1 <br> 성공했을때 1</div>
+<div class="addreportsoldiv"></div>
 
 <hr><h1>boarddetail</h1>
 <form class="boarddetail">

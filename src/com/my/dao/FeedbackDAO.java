@@ -37,7 +37,7 @@ public interface FeedbackDAO {
      * @return 문의 상세 내용
      * @throws FindException 문의 아이디에 대한 내용이 없을 때
      */
-    Qa QaByQaId(String qa_id) throws FindException;
+    Qa QaByQaId(String qa_id, int n, int s) throws FindException;
 
 
     /**
@@ -75,7 +75,7 @@ public interface FeedbackDAO {
      * @return 신고 객체
      * @throws FindException 신고 아이디에 대한 신고 없을때
      */
-    Report ReportById(String report_id) throws FindException;
+    Report ReportById(String report_id, int n , int s) throws FindException;
 
     /**
      * 7개씩 끊어서 전체 신고 조회
@@ -98,6 +98,13 @@ public interface FeedbackDAO {
      * @throws ModifyException 수정 실패시 예외발생
      */
     void ReportUpdate(Report report) throws ModifyException;
+
+    /**
+     * 신고에 대한 답변
+     * @param content 답변 내용
+     * @throws ModifyException 수정 실패시 예외발생
+     */
+    void ReportSolUpdate(String report_id, String content) throws ModifyException;
 
     /**
      * 신고 삭제

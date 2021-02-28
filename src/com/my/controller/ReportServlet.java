@@ -25,9 +25,11 @@ public class ReportServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> jacksonMap = new HashMap<>();
         String report_id = request.getParameter("report_id");
+        int New = Integer.parseInt(request.getParameter("n"));
+        int status = Integer.parseInt(request.getParameter("s"));
 
         try {
-            Report report = service.findReportById(report_id);
+            Report report = service.findReportById(report_id,New,status);
             jacksonMap.put("report_id",report.getReport_id());
             jacksonMap.put("user_nickname",report.getUser().getUser_nickname());
             jacksonMap.put("content",report.getQuestion().getContent());

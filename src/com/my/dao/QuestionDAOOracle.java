@@ -107,10 +107,11 @@ public class QuestionDAOOracle implements QuestionDAO {
             throw new FindException(e.getMessage());
         }
 
-        String selectByIdSQL = "select * from (select * from question_solved qs join question q on qs.question_id=q.question_id where qs.user_id=? order by qs.solved_date desc) where rownum<=?";
+        String selectByIdSQL = "select * from (select * from question_solved qs join question q on qs.question_id=q.question_id left join my_note mn on qs.question_id = mn.question_id and mn.user_id=? where qs.user_id=? order by qs.solved_date desc) where rownum<=?";
         List<Question> all = new ArrayList<>();
         try {
             pstmt = con.prepareStatement(selectByIdSQL);
+            pstmt.setString(1,user_id);
             pstmt.setString(1,user_id);
             pstmt.setInt(2,n);
             rs = pstmt.executeQuery();
@@ -123,6 +124,11 @@ public class QuestionDAOOracle implements QuestionDAO {
                 question.setTotal_answer_count(Integer.parseInt(rs.getString("total_answer_count")));
                 question.setCorrect_answer_count(Integer.parseInt(rs.getString("correct_answer_count")));
                 question.setQuestion_ox(Integer.parseInt(rs.getString("question_ox")));
+                if(rs.getString("user_id_1") == null){
+                    question.setMn_id("");
+                }else{
+                    question.setMn_id("V");
+                }
                 all.add(question);
             }
             if(all.size() == 0){

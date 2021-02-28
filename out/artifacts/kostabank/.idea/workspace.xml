@@ -2,24 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16e17220-2afb-4179-8d98-175bea7de85e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/kostabank_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/kostabank_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/com/my/controller/AddReportSolServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/AddEmailServlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/AddEmailServlet$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/AddEmailServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/AddEmailServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/EmailDupChkServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/EmailDupChkServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/UserDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/UserDAOOracle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/UserDAOOracle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/ModPwdByEmailServlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/ModPwdByEmailServlet$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/ModPwdByEmailServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/ModPwdByEmailServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/QaServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/QaServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/ReportListServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/ReportListServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/ReportServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/controller/ReportServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/FeedbackDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/FeedbackDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/FeedbackDAOOracle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/dao/FeedbackDAOOracle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/model/DeleteEmailThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/model/DeleteEmailThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/service/FeedbackService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/service/FeedbackService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/vo/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/classes/com/my/vo/Report.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/lib/자바library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/WEB-INF/lib/자바library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/api.html" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/api.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/categoryinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/categoryinfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/categorynote.html" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/categorynote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/artifacts/kostabank/myinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../out/artifacts/kostabank/myinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/AddEmailServlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/AddEmailServlet$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/AddEmailServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/AddEmailServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/EmailDupChkServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/EmailDupChkServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/UserDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/UserDAOOracle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/UserDAOOracle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/com/my/controller/AddEmailServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/controller/AddEmailServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/com/my/controller/EmailDupChkServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/controller/EmailDupChkServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/com/my/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/com/my/dao/UserDAOOracle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/dao/UserDAOOracle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/com/my/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/ModPwdByEmailServlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/ModPwdByEmailServlet$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/ModPwdByEmailServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/ModPwdByEmailServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/QaServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/QaServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/ReportListServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/ReportListServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/ReportServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/controller/ReportServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/FeedbackDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/FeedbackDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/FeedbackDAOOracle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/dao/FeedbackDAOOracle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/model/DeleteEmailThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/model/DeleteEmailThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/service/FeedbackService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/service/FeedbackService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/kostabank/com/my/vo/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/kostabank/com/my/vo/Report.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/controller/QaServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/controller/QaServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/controller/ReportListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/controller/ReportListServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/controller/ReportServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/controller/ReportServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/dao/FeedbackDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/dao/FeedbackDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/dao/FeedbackDAOOracle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/dao/FeedbackDAOOracle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/service/FeedbackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/service/FeedbackService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/my/vo/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/my/vo/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.html" beforeDir="false" afterPath="$PROJECT_DIR$/api.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categoryinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/categoryinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categorynote.html" beforeDir="false" afterPath="$PROJECT_DIR$/categorynote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/myinfo.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +127,8 @@
       <workItem from="1613395384297" duration="29958000" />
       <workItem from="1613613779954" duration="757000" />
       <workItem from="1613878936123" duration="32191000" />
-      <workItem from="1613962202450" duration="594000" />
+      <workItem from="1613962202450" duration="1190000" />
+      <workItem from="1614433438896" duration="210000" />
     </task>
     <servers />
   </component>
@@ -111,10 +136,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1613952272392">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1614433649471">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1613952272392" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614433649471" />
+    <state x="439" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1614433612994">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="439" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1614433612994" />
     <state x="122" y="139" width="1350" height="638" key="dock-window-1" timestamp="1613446638000">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

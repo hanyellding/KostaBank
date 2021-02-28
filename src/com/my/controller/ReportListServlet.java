@@ -45,6 +45,7 @@ public class ReportListServlet extends HttpServlet {
                 jacksonMap.put("report_status",report.getReport_status());
                 jacksonMap.put("report_sol_wdate",report.getReport_sol_wdate());
                 jacksonMap.put("report_sol_content",report.getReport_sol_content());
+                jacksonMap.put("report_total",report.getReport_total());
                 jacksonList.add(jacksonMap);
             }
             String jsonStr = mapper.writeValueAsString(jacksonList);
