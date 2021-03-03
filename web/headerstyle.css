@@ -19,6 +19,7 @@ body {
     height: 100%;
     background: rgb(136, 136, 136);
     transition: all .5s ease;
+    z-index: 1;
 }
 .sidebar>div.sidebar_header {
     font-size: 22px;

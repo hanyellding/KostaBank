@@ -101,6 +101,7 @@
     </style>
     <script>
         $(function () {
+            sessionStorage.clear();
             let $noteMenuObj = $(".note_menu>div");
             $noteMenuObj.click(function (event) {
                 $noteMenuObj.css({"font-weight":"normal"});
@@ -111,19 +112,15 @@
             let $contentImg = $('.question');
             let $explanationImg = $('.explanation');
             let $pagingNumber = $('.paging_number');
-            let num = sessionStorage.getItem("pagingNum");
-            if(num === null){
-                num = 1;
-            }
-            num = parseInt(num);
+            let num = 1;
             let promisePaging = $.ajax({
                     url: './mynote',
                     method: 'post',
                     data:{"rownum":num},
                     success(data){
                         $('.paging>div').css("display", "none");
-                        $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(5,1)+"과목 " +data.question_id.substr(8,2)+"번"
-                            +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span>");
+                        $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(7,1)+"과목 " +data.question_id.substr(8,2)+"번"
+                            +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span> <span class='"+data.question_id+"' style='display: none'></span>");
                         $contentImg.attr("src", "./images/question/"+data.content+".PNG");
                         $explanationImg.attr("src","./images/question/"+data.explanation+".PNG");
 
@@ -173,8 +170,8 @@
                         data:{"rownum":num},
                         success(data){
                             $('.paging>div').css("display", "none");
-                            $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(5,1)+"과목 " +data.question_id.substr(8,2)+"번"
-                                +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span>");
+                            $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(7,1)+"과목 " +data.question_id.substr(8,2)+"번"
+                                +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span> <span class='"+data.question_id+"' style='display: none'></span>");
                             $contentImg.attr("src", "./images/question/"+data.content+".PNG");
                             $explanationImg.attr("src","./images/question/"+data.explanation+".PNG");
 
@@ -241,8 +238,8 @@
                     data:{"rownum":n},
                     success(data){
                         $('.paging>div').css("display", "none");
-                        $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(5,1)+"과목 " +data.question_id.substr(8,2)+"번"
-                            +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span>");
+                        $detailInfo.html(data.question_id.substr(0,4) + "년 " + data.question_id.substr(5,1) + "회 정보처리기사 "+data.question_id.substr(7,1)+"과목 " +data.question_id.substr(8,2)+"번"
+                            +"<span class='answer_percent'>(정답률: "+data.correct_percent+"%)</span> <span class='answer'>답 : "+data.correct_answer+"</span> <span class='"+data.question_id+"' style='display: none'></span>");
                         $contentImg.attr("src", "./images/question/"+data.content+".PNG");
                         $explanationImg.attr("src","./images/question/"+data.explanation+".PNG");
 
@@ -287,7 +284,25 @@
             $explanationImg.on('load',function () {
                 let Cheight = $('.note_content').height();
                 $('.mycategory_contents').css({'height':Cheight+19+'px'});
+
+                $('.btn_delete').click(function () {
+                    $.ajax({
+                        url: './removemn',
+                        method: 'post',
+                        data: {"question_id": $('.note_content_detail_info>span:nth-child(3)').attr('class')},
+                        success(data){
+                            if(data.status === 1){
+                                $(".mycategory_contents").load("/kostabank/categorynote.html");
+                                sessionStorage.clear();
+                            }
+                            else if (data.status !== -1){
+                                alert(data.msg);
+                            }
+                        }
+                    });
+                });
             });
+
 
         });
 

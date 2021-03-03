@@ -1,6 +1,8 @@
 package com.my.dao;
 
+import com.my.exception.AddException;
 import com.my.exception.FindException;
+import com.my.exception.RemoveException;
 import com.my.vo.Question;
 
 import java.util.List;
@@ -22,6 +24,22 @@ public interface QuestionDAO {
      * @throws FindException 페이징 숫자에 해당하는 문제가 없을경우
      */
     Question selectMNById(String user_id, int rownum) throws FindException;
+
+    /**
+     * 풀었던 문제에서 노트로 추가
+     * @param user_id 세션에 있는 유저 아이디
+     * @param question_id_list 문제 아이디가 담긴 리스트
+     * @throws AddException
+     */
+    void insertMNById(String user_id, String[] question_id_list) throws AddException;
+
+    /**
+     * 삭제 버튼 누르고 삭제
+     * @param user_id 세션에 있는 아이디
+     * @param question_id 요청받을 문제 아이디
+     * @throws RemoveException 삭제가 진행되지 않았을 경우
+     */
+    void deleteMNById(String user_id, String question_id) throws RemoveException;
 
     /**
      * 내가 푼 문제 가져오기 // solved와 questrion 조인 200개

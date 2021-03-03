@@ -50,6 +50,7 @@ public class HeaderServlet extends HttpServlet {
             jacksonMap2.put("user_id",user.getUser_id());
             jacksonMap2.put("user_nickname",user.getUser_nickname());
             jacksonMap2.put("user_email",user.getUser_email());
+            jacksonMap2.put("user_adm",user.getUser_adm());
             jacksonMap2.put("feedbacks",jacksonList);
 
             String jsonStr = mapper.writeValueAsString(jacksonMap2);

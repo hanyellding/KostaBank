@@ -1,9 +1,12 @@
 package com.my.dao;
 
+import com.my.exception.AddException;
 import com.my.exception.FindException;
+import com.my.exception.RemoveException;
 import com.my.sql.MyConnection;
 import com.my.vo.Question;
 import com.my.vo.User;
+import com.sun.deploy.uitoolkit.impl.awt.ui.SwingConsoleWindow;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -95,6 +98,60 @@ public class QuestionDAOOracle implements QuestionDAO {
     }
 
     @Override
+    public void insertMNById(String user_id, String[] question_id_list) throws AddException {
+        Connection con = null;
+        try {
+            con = MyConnection.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AddException("노트 추가 실패: 이유= "+ e.getMessage());
+        }
+        PreparedStatement pstmt = null;
+        String insertSQL = "INSERT INTO my_note (user_id,question_id) VALUES (?,?)";
+        try {
+            for(int i =0; i<question_id_list.length;i++) {
+                pstmt = con.prepareStatement(insertSQL);
+                pstmt.setString(1, user_id);
+                pstmt.setString(2, question_id_list[i]);
+                pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            if(e.getErrorCode() == 1){
+                throw new AddException("이미 존재하는 정보 입니다.");
+            }else {
+                e.printStackTrace();
+            }
+        } finally {
+            MyConnection.close(con,pstmt);
+        }
+    }
+
+    @Override
+    public void deleteMNById(String user_id, String question_id) throws RemoveException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = MyConnection.getConnection();
+        } catch (Exception e) {
+            throw new RemoveException(e.getMessage());
+        }
+        String deleteSQL = "delete from my_note where user_id = ? and question_id = ?";
+        try {
+            pstmt = con.prepareStatement(deleteSQL);
+            pstmt.setString(1,user_id);
+            pstmt.setString(2,question_id);
+            int rowcnt = pstmt.executeUpdate();
+            if(rowcnt !=1){
+                throw new RemoveException("삭제실패: 해당 문제가 없습니다");
+            }
+        } catch (SQLException e) {
+            throw new RemoveException(e.getMessage());
+        }finally {
+            MyConnection.close(con,pstmt);
+        }
+    }
+
+    @Override
     public List<Question> selectSQById(String user_id, int n) throws FindException {
         Connection con =null;
         PreparedStatement pstmt = null;
@@ -112,8 +169,8 @@ public class QuestionDAOOracle implements QuestionDAO {
         try {
             pstmt = con.prepareStatement(selectByIdSQL);
             pstmt.setString(1,user_id);
-            pstmt.setString(1,user_id);
-            pstmt.setInt(2,n);
+            pstmt.setString(2,user_id);
+            pstmt.setInt(3,n);
             rs = pstmt.executeQuery();
             while (rs.next()){
                 Question question = new Question();
@@ -124,7 +181,7 @@ public class QuestionDAOOracle implements QuestionDAO {
                 question.setTotal_answer_count(Integer.parseInt(rs.getString("total_answer_count")));
                 question.setCorrect_answer_count(Integer.parseInt(rs.getString("correct_answer_count")));
                 question.setQuestion_ox(Integer.parseInt(rs.getString("question_ox")));
-                if(rs.getString("user_id_1") == null){
+                if(rs.getString("mn_date") == null){
                     question.setMn_id("");
                 }else{
                     question.setMn_id("V");
