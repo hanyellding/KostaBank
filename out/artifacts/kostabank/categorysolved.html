@@ -235,7 +235,7 @@
             });
             $mn.click(function (event) {
                 let question_list = [];
-                if (sessionStorage.getItem("question_list") !== null) {
+                if (sessionStorage.getItem("question_list"  ) !== null) {
                     question_list = JSON.parse(sessionStorage.getItem("question_list"));
                 }
                 // let question_id = $(event.target).closest('.solved_info').find('.solved_question_id').text();
@@ -267,8 +267,6 @@
 
         $('.btn_complete').click(function () {
             let question_list =JSON.parse(sessionStorage.getItem("question_list"));
-            console.log(question_list);
-            console.log(1);
             $.ajax({
                 url: './addmn',
                 method: 'post',

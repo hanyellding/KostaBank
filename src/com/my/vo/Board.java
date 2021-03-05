@@ -13,6 +13,7 @@ public class Board {
     private String board_file;
     private List<BoardComment> board_comment;
     private int board_up;
+    private int board_total;
 
     public Board() {
     }
@@ -108,6 +109,14 @@ public class Board {
 
     public void setBoard_up(int board_up) {
         this.board_up = board_up;
+    }
+
+    public int getBoard_total() {
+        return board_total;
+    }
+
+    public void setBoard_total(int board_total) {
+        this.board_total = board_total;
     }
 
     @Override

@@ -288,6 +288,20 @@
                 return false;
             });
 
+            $('.addqasol>input[type=submit]').click(function () {
+                $.ajax({
+                    url: './addqasol',
+                    method: 'post',
+                    data: {"qa_id": $('.addqasol>label>.qa_id').val(),
+                        "content": $('.addqasol>label>.content').val()},
+                    dataType: "text",
+                    success(data){
+                        $('.addqasoldiv').html(data);
+                    }
+                });
+                return false;
+            });
+
             $('.reportlist>input[type=submit]').click(function () {
                 $.ajax({
                     url: './reportlist',
@@ -352,6 +366,164 @@
                 });
                 return false;
             });
+
+            $('.addqtmp>input[type=submit]').click(function () {
+                $.ajax({
+                    url: './addqtmp',
+                    method: 'post',
+                    data: {"question_year": $('.addqtmp>label>.question_year').val()},
+                    dataType: "text",
+                    success(data){
+                        $('.addqtmpdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
+            $('.qtmp>input[type=submit]').click(function () {
+                $.ajax({
+                    url: './qtmp',
+                    method: 'post',
+                    data: {"row_num": $('.qtmp>label>.row_num').val()},
+                    dataType: "text",
+                    success(data){
+                        $('.qtmpdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
+
+            let question_id_list =[];
+            $('.addmn>button.add_list').click(function () {
+                let session_question_id_list = JSON.parse(sessionStorage.getItem("question_id_list"));
+                if(session_question_id_list !== null){
+                    question_id_list=session_question_id_list;
+                }
+                question_id_list.push($('.addmn>label>.question_id_list').val());
+                // 수정할 때는 question_id_list[i] = ? (문제 풀이과정에서만)
+                sessionStorage.setItem("question_id_list", JSON.stringify(question_id_list));
+                return false;
+            });
+            $('.addmn>button.ajax').click(function () {
+
+                $.ajax({
+                    url: './addmn',
+                    method: 'post',
+                    data: {"question_id_list": JSON.parse(sessionStorage.getItem("question_id_list"))},
+                    traditional: true,// 이거 꼭 추가하기
+                    dataType: "text",
+                    success(data){
+                        sessionStorage.clear();
+                        $('.addmndiv').html(data);
+                    }
+                });
+                return false;
+            });
+
+
+            let question_answer_list =[];
+            $('.scoringq>button.add_list').click(function () {
+                let session_question_answer_list = JSON.parse(sessionStorage.getItem("question_answer_list"));
+                if(session_question_answer_list !== null){
+                    question_answer_list=session_question_answer_list;
+                }
+                question_answer_list.push($('.scoringq>label>.answer_list').val());
+                // 수정할 때는 question_id_list[i] = ? (문제 풀이과정에서만)
+                sessionStorage.setItem("question_answer_list", JSON.stringify(question_answer_list));
+                return false;
+            });
+            $('.scoringq>button.ajax').click(function () {
+
+                $.ajax({
+                    url: './scoringq',
+                    method: 'post',
+                    data: {"answer_list": JSON.parse(sessionStorage.getItem("question_answer_list"))},
+                    traditional: true,// 이거 꼭 추가하기
+                    dataType: "text",
+                    success(data){
+                        sessionStorage.clear();
+                        $('.scoringqdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
+
+
+            $('.solveresult>input[type=submit]').click(function () {
+                $.ajax({
+                    url: './solveresult',
+                    method: 'post',
+                    data: {"question_round": $('.solveresult>label>.question_round').val()},
+                    dataType: "text",
+                    success(data){
+                        $('.solveresultdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
+
+
+
+            let board_id_list =[];
+            $('.removeboardbylist>button.add_list').click(function () {
+                let session_board_id_list = JSON.parse(sessionStorage.getItem("board_id_list"));
+                if(session_board_id_list !== null){
+                    board_id_list=session_board_id_list;
+                }
+                board_id_list.push($('.removeboardbylist>label>.board_id_list').val());
+                // 수정할 때는 question_id_list[i] = ? (문제 풀이과정에서만)
+                sessionStorage.setItem("board_id_list", JSON.stringify(board_id_list));
+                return false;
+            });
+            $('.removeboardbylist>button.ajax').click(function () {
+
+                $.ajax({
+                    url: './removeboardbylist',
+                    method: 'post',
+                    data: {"board_id_list": JSON.parse(sessionStorage.getItem("board_id_list"))},
+                    traditional: true,// 이거 꼭 추가하기
+                    dataType: "text",
+                    success(data){
+                        sessionStorage.clear();
+                        $('.removeboardbylistdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
+
+
+
+            let qa_id_list =[];
+            $('.removeqabylist>button.add_list').click(function () {
+                let session_qa_id_list = JSON.parse(sessionStorage.getItem("qa_id_list"));
+                if(session_qa_id_list !== null){
+                    qa_id_list=session_qa_id_list;
+                }
+                qa_id_list.push($('.removeqabylist>label>.qa_id_list').val());
+                // 수정할 때는 question_id_list[i] = ? (문제 풀이과정에서만)
+                sessionStorage.setItem("qa_id_list", JSON.stringify(qa_id_list));
+                return false;
+            });
+            $('.removeqabylist>button.ajax').click(function () {
+
+                $.ajax({
+                    url: './removeqabylist',
+                    method: 'post',
+                    data: {"qa_id_list": JSON.parse(sessionStorage.getItem("qa_id_list"))},
+                    traditional: true,// 이거 꼭 추가하기
+                    dataType: "text",
+                    success(data){
+                        sessionStorage.clear();
+                        $('.removeqabylistdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
 
 
             let timer = setInterval(function () {
@@ -615,6 +787,19 @@
 <div>  실패했을때 -1 <br> 성공했을때 1</div>
 <div class="addreportsoldiv"></div>
 
+<hr><h1>addqasol</h1>
+<form class="addqasol">
+    <label> qa_id
+        <input type="text" class="qa_id"><br>
+    </label>
+    <label> content
+        <input type="text" class="content"><br>
+    </label>
+    <input type="submit">
+</form>
+<div>  실패했을때 -1 <br> 성공했을때 1</div>
+<div class="addqasoldiv"></div>
+
 <hr><h1>boarddetail</h1>
 <form class="boarddetail">
     <label> board_id
@@ -651,6 +836,80 @@
 </form>
 <div>  삭제 실패 -1 // 삭제 성공 1</div>
 <div class="removemndiv"></div>
+
+<hr><h1>addqtmp // 로그인 후 진행</h1>
+<form class="addqtmp">
+    <label> question_year
+        <input type="text" class="question_year"><br>
+    </label>
+    <input type="submit">
+</form>
+<div>  저장 실패 -1 // 저장 성공 1</div>
+<div class="addqtmpdiv"></div>
+
+<hr><h1>qtmp // 로그인 후 진행</h1>
+<form class="qtmp">
+    <label> row_num
+        <input type="text" class="row_num"><br>
+    </label>
+    <input type="submit">
+</form>
+<div>  조회 실패 -1 // </div>
+<div class="qtmpdiv"></div>
+
+<hr><h1>addmn // 로그인 후 진행 //문제 중복 x</h1>
+<div class="addmn">
+    <label> question_id_list
+        <input type="text" class="question_id_list"><br>
+    </label>
+    <button class="add_list">리스트 추가</button>
+    <button class="ajax">ajax 버튼</button>
+</div>
+<div>  추가 실패 -1 // </div>
+<div class="addmndiv"></div>
+
+<hr><h1>scoringq // 로그인 후 진행 //문제 중복 x</h1>
+<div class="scoringq">
+    <label> answer_list
+        <input type="text" class="answer_list"><br>
+    </label>
+    <button class="add_list">리스트 추가</button>
+    <button class="ajax">ajax 버튼</button>
+</div>
+<div>  채점 실패 -1 // </div>
+<div class="scoringqdiv"></div>
+
+<hr><h1>solveresult // 로그인 후 진행</h1>
+<form class="solveresult">
+    <label> question_round
+        <input type="text" class="question_round"><br>
+    </label>
+    <input type="submit">
+</form>
+<div>  조회 실패 -1 // </div>
+<div class="solveresultdiv"></div>
+
+<hr><h1>removeboardbylist //게시판 id 중복 x</h1>
+<div class="removeboardbylist">
+    <label> board_id_list
+        <input type="text" class="board_id_list"><br>
+    </label>
+    <button class="add_list">리스트 추가</button>
+    <button class="ajax">ajax 버튼</button>
+</div>
+<div>  삭제 실패 -1 // </div>
+<div class="removeboardbylistdiv"></div>
+
+<hr><h1>removeqabylist //문의사항 id 중복 x</h1>
+<div class="removeqabylist">
+    <label> qa_id_list
+        <input type="text" class="qa_id_list"><br>
+    </label>
+    <button class="add_list">리스트 추가</button>
+    <button class="ajax">ajax 버튼</button>
+</div>
+<div>  삭제 실패 -1 // </div>
+<div class="removeqabylistdiv"></div>
 
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.my.dao;
 
 import com.my.exception.AddException;
 import com.my.exception.FindException;
+import com.my.exception.ModifyException;
 import com.my.exception.RemoveException;
 import com.my.vo.Question;
 
@@ -56,4 +57,38 @@ public interface QuestionDAO {
      * @throws FindException 존재하지 않거나 데이터가 없을때
      */
     List<Question> selectAll() throws FindException;
+
+    /**
+     * 디비에서 임시 문제 지우고 선택해온 문제를 insert
+     * @param user_id 세션 아이디
+     * @param question_year 문제 코드
+     * @throws AddException question_tmp에 추가 에러
+     */
+    void insertQTmpByQYear(String user_id, String question_year) throws AddException;
+
+    /**
+     * row_num으로 찾는 문제 아이디
+     * @param user_id 세션에 있는 아이디
+     * @param row_num 몇번째 문제
+     * @return 문제 객체
+     * @throws FindException 존재하지 않을경우
+     */
+    Question selectQTmpByQId(String user_id, String row_num) throws FindException;
+
+    /**
+     * 문제 정답 배열을 받아서 ox를 판별
+     * @param user_id 세션에 있는 아이디
+     * @param question_answer_list 문제 정답 리스트
+     * @throws ModifyException 수정실패 시
+     */
+    void updateQTmpByQ(String user_id, String[] question_answer_list) throws ModifyException;
+
+    /**
+     * 문제 푼 후 회차별로 문제를 가져오는 리스트
+     * @param user_id 세션에 있는 아이디
+     * @param question_round question_tmp에 저장되어있는 회차
+     * @throws FindException 정보가 존재하지 않을 경우
+     */
+    List<Question> selectAfterSolveQByRound(String user_id, String question_round) throws FindException;
 }
+

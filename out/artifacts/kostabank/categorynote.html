@@ -128,6 +128,9 @@
                         let total = data.mn_total;
                         let pagePerTen = Math.ceil(total/10);
                         let pageLast = total%10;
+                        if(pageLast === 0){
+                            pageLast = 10;
+                        }
                         let countTen;
                         if(num !== 1){
                             $('.paging>.prev').css("display", "inline-block");
@@ -179,6 +182,9 @@
                             let total = data.mn_total;
                             let pagePerTen = Math.ceil(total/10);
                             let pageLast = total%10;
+                            if(pageLast === 0){
+                                pageLast = 10;
+                            }
                             let countTen;
                             if(num !== 1){
                                 $('.paging>.prev').css("display", "inline-block");
@@ -247,6 +253,9 @@
                         let total = data.mn_total;
                         let pagePerTen = Math.ceil(total/10);
                         let pageLast = total%10;
+                        if(pageLast === 0){
+                            pageLast = 10;
+                        }
                         let countTen;
                         if(n !== 1){
                             $('.paging>.prev').css("display", "inline-block");

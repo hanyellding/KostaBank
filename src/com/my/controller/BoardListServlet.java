@@ -42,6 +42,7 @@ public class BoardListServlet extends HttpServlet {
                 jacksonMap.put("board_wdate",board.getBoard_wdate());
                 jacksonMap.put("board_view",board.getBoard_view());
                 jacksonMap.put("board_file",board.getBoard_file());
+                jacksonMap.put("board_total",board.getBoard_total());
                 jacksonList.add(jacksonMap);
             }
             String jsonStr = mapper.writeValueAsString(jacksonList);

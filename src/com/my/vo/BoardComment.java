@@ -2,6 +2,7 @@ package com.my.vo;
 
 public class BoardComment {
     private User user;
+    private String board_id;
     private String comment_wdate;
     private String comment_content;
 
@@ -36,6 +37,14 @@ public class BoardComment {
 
     public void setComment_content(String comment_content) {
         this.comment_content = comment_content;
+    }
+
+    public String getBoard_id() {
+        return board_id;
+    }
+
+    public void setBoard_id(String board_id) {
+        this.board_id = board_id;
     }
 
     @Override

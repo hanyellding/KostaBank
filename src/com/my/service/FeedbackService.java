@@ -2,8 +2,10 @@ package com.my.service;
 
 import com.my.dao.FeedbackDAO;
 import com.my.dao.FeedbackDAOOracle;
+import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.exception.ModifyException;
+import com.my.exception.RemoveException;
 import com.my.vo.Feedback;
 import com.my.vo.Qa;
 import com.my.vo.Report;
@@ -20,6 +22,12 @@ public class FeedbackService {
     public List<Qa> qaAll(int page, int num) throws FindException{
         return dao.QaAll(page,num);
     }
+    public void addQa (Qa qa) throws AddException {
+        dao.QaInsert(qa);
+    }
+    public int findNextQaId() throws FindException {
+        return dao.qaNextId();
+    }
 
     public Report findReportById(String report_id,int n, int s) throws FindException{
         return dao.ReportById(report_id,  n,  s);
@@ -35,5 +43,13 @@ public class FeedbackService {
 
     public void  addReportSol(String report_id, String content) throws ModifyException{
         dao.ReportSolUpdate(report_id,content);
+    }
+
+    public void addQaSol(String qa_id, String content) throws ModifyException{
+        dao.QaSolUpdate(qa_id, content);
+    }
+
+    public void removeQaByList(String[] qa_id_list) throws RemoveException{
+        dao.QADeleteByList(qa_id_list);
     }
 }

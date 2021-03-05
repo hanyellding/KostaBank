@@ -8,6 +8,7 @@ import com.my.vo.Feedback;
 import com.my.vo.Notice;
 import com.my.vo.Qa;
 import com.my.vo.Report;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 import java.util.List;
 
@@ -107,9 +108,30 @@ public interface FeedbackDAO {
     void ReportSolUpdate(String report_id, String content) throws ModifyException;
 
     /**
+     * 문의에 대한 답변
+     * @param qa_id qa의 아이디
+     * @param content 답변 내용
+     * @throws ModifyException 수정에 실패시 예외발생
+     */
+    void QaSolUpdate(String qa_id, String content) throws ModifyException;
+
+    /**
      * 신고 삭제
      * @param report_id 신고 id
      * @throws RemoveException 삭제 실패시 예외발생
      */
     void ReportDelete(String report_id) throws RemoveException;
+
+    /**
+     * 관리자가 문의사항 여러개 삭제
+     * @param qa_id_list 문의사항 리스트
+     * @throws RemoveException 삭제 실패 시 예외발생
+     */
+    void QADeleteByList(String[] qa_id_list) throws RemoveException;
+
+    /**
+     * 다음 문의글번호값 얻기
+     * @return
+     */
+    int qaNextId() throws FindException;
 }

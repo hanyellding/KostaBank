@@ -38,6 +38,7 @@ public interface BoardDAO {
      */
     List<Board> BoardAll(int page, int n) throws FindException;
 
+
     /**
      * 게시판 댓글들
      * @param board_id 게시판 아이디
@@ -46,6 +47,15 @@ public interface BoardDAO {
      */
     List<BoardComment> CommentAll(String board_id) throws FindException;
 
+
+    /**
+     * 댓글 등록
+     * @param comment 댓글 객체
+     * @throws AddException
+     */
+    public void CommentInsert(BoardComment comment) throws AddException;
+
+
     /**
      * 좋아요 체크
      * @param user_id 세션에 있는 아이디
@@ -53,6 +63,21 @@ public interface BoardDAO {
      * @throws FindException 좋아요 안누른사람
      */
     void UpCheck(String user_id, String board_id) throws FindException;
+
+    /**
+     * 좋아요 추가
+     * @param board_id 게시글 번호
+     * @param user_id 로그인된 아이디
+     * @throws AddException
+     */
+    void BoardUpInsert (String board_id, String user_id) throws AddException;
+
+    /**
+     * 좋아요 삭제
+     * @param board_id 게시글 번호
+     * @throws RemoveException 삭제실패시 예외발생
+     */
+    void BoradUpDelete(String board_id) throws RemoveException;
 
     /**
      * 새로 만든 게시판 인서트
@@ -110,5 +135,37 @@ public interface BoardDAO {
      * @throws RemoveException 삭제 실패시 예외발생
      */
     void NoticeDelete(String notice_id) throws RemoveException;
+
+    int NextId() throws FindException;
+    /**
+     * 조회수 조회
+     * @param board_id
+     * @return 조회수
+     * @throws FindException
+     */
+    Board BoardViewChk(String board_id) throws FindException;
+    /**
+     * 조회수 1씩 증가
+     * @param board_id
+     * @throws ModifyException
+     */
+    void BoardViewUpdate(String board_id) throws ModifyException;
+
+    /**
+     * 제목으로 게시글 찾기
+     *
+     * @param board_title 게시글제목
+     * @return 게시글
+     * @throws FindException 제목에 해당하는 게시글이 없을 때
+     */
+    List<Board> BoardByTitle(String board_title) throws FindException;
+
+
+    /**
+     * 게시판 여러개 삭제
+     * @param board_id_list 삭제할 게시판 리스트
+     * @throws RemoveException 삭제 실패 시 예외발생
+     */
+    void DeleteBoardByList(String[] board_id_list) throws RemoveException;
 
 }

@@ -59,7 +59,7 @@ public class HeaderServlet extends HttpServlet {
             e.printStackTrace();
             Map<String, Object> jacksonMap = new HashMap<>();
             jacksonMap.put("status", -1);
-            jacksonMap.put("msg", "로그인을 진행 ..x");
+            jacksonMap.put("msg", "로그인을 진행x");
             String jsonStr = mapper.writeValueAsString(jacksonMap);
             out.print(jsonStr);
         } catch (Exception e) {
