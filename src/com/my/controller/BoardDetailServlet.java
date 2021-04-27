@@ -1,20 +1,21 @@
 package com.my.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.my.exception.FindException;
-import com.my.service.BoardService;
-import com.my.service.FeedbackService;
-import com.my.vo.Board;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.my.exception.FindException;
+import com.my.service.BoardService;
+import com.my.vo.Board;
 
 @WebServlet(name = "BoardDetailServlet",value = "/boarddetail")
 public class BoardDetailServlet extends HttpServlet {
@@ -25,6 +26,8 @@ public class BoardDetailServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> jacksonMap = new HashMap<>();
         String board_id = request.getParameter("board_id");
+        HttpSession session = request.getSession();
+        session.setAttribute("board_id", board_id);
 
         try {
             Board board = service.boardById(board_id);
@@ -36,6 +39,7 @@ public class BoardDetailServlet extends HttpServlet {
             jacksonMap.put("board_wdate",board.getBoard_wdate());
             jacksonMap.put("board_view",board.getBoard_view());
             jacksonMap.put("board_file",board.getBoard_file());
+            jacksonMap.put("board_up", board.getBoard_up());
             String jsonStr = mapper.writeValueAsString(jacksonMap);
             out.print(jsonStr);
         } catch (FindException e) {

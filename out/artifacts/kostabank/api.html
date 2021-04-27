@@ -380,6 +380,18 @@
                 return false;
             });
 
+            $('.addrandomqtmp>input[type=submit]').click(function () {
+                $.ajax({
+                    url: './addrandomqtmp',
+                    method: 'post',
+                    dataType: "text",
+                    success(data){
+                        $('.addrandomqtmpdiv').html(data);
+                    }
+                });
+                return false;
+            });
+
             $('.qtmp>input[type=submit]').click(function () {
                 $.ajax({
                     url: './qtmp',
@@ -846,6 +858,13 @@
 </form>
 <div>  저장 실패 -1 // 저장 성공 1</div>
 <div class="addqtmpdiv"></div>
+
+<hr><h1>addrandomqtmp // 로그인 후 진행</h1>
+<form class="addrandomqtmp">
+    <input type="submit">
+</form>
+<div>  저장 실패 -1 // 저장 성공 1</div>
+<div class="addrandomqtmpdiv"></div>
 
 <hr><h1>qtmp // 로그인 후 진행</h1>
 <form class="qtmp">

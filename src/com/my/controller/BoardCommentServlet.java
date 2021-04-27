@@ -25,23 +25,22 @@ import com.my.vo.User;
 @WebServlet("/boardcomment")
 public class BoardCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String board_id = request.getParameter("board_id");
 		BoardService service = new BoardService();
 		List<Map<String,Object>> jacksonList = new ArrayList<>();
-		ObjectMapper mapper = new ObjectMapper(); 
-		
-		
-//		HttpSession session = request.getSession();
-//		String loginedId = (String)session.getAttribute("loginInfo");
-//		User user = new User();
-//		UserService uService = new UserService();
-		
+		ObjectMapper mapper = new ObjectMapper();
+
+		HttpSession session = request.getSession();
+		String loginedId = (String)session.getAttribute("loginInfo");
+		User user = new User();
+		UserService uService = new UserService();
+
 		try {
-			//댓글 보여주기 
+			//댓글 보여주기
 			List<BoardComment> comments = service.commentAll(board_id);
 			for(BoardComment comment:comments) {
 				Map<String,Object> jacksonMap = new HashMap<>();
@@ -53,7 +52,6 @@ public class BoardCommentServlet extends HttpServlet {
 			}
 			String jsonStr = mapper.writeValueAsString(jacksonList);
 			out.print(jsonStr);
-			System.out.println("보드코멘트서블릿 test: " +jsonStr);
 		} catch (FindException  e) {
 			e.printStackTrace();
 			Map<String,Object> jacksonMap = new HashMap<>();

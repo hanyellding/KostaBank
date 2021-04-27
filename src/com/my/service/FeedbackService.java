@@ -36,6 +36,9 @@ public class FeedbackService {
     public List<Report> reportAll(int page, int num) throws  FindException{
         return dao.ReportAll(page,num);
     }
+    public void addReport(Report report) throws AddException{
+        dao.ReportInsert(report);
+    }
 
     public List<Feedback> feedbacksById(String user_id) throws Exception{
         return dao.selectFeedbackById(user_id);

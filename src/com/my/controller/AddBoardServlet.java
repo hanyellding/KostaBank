@@ -31,22 +31,14 @@ public class AddBoardServlet extends HttpServlet {
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		Map <String, Object> jacksonMap = new HashMap<>();
-		ObjectMapper mapper = new ObjectMapper();	
-
-		//요청 전달 데이터 얻기
-		//		String board_subtitle = request.getParameter("subtitle");
-		//		String board_title = request.getParameter("title");
-		//		String board_content = request.getParameter("board_content");
-		//		String board_file = request.getParameter("board_file");
-
-
+		ObjectMapper mapper = new ObjectMapper();
 		BoardService service = new BoardService();
 		try {
 			int nextBoardId = service.findNextBoardId();
-			 File uploadFile =  new File(this.getServletContext().getRealPath("/")+ "/boardupload");
-		        if(!uploadFile.exists()){
-		            uploadFile.mkdir();
-		        }
+			File uploadFile =  new File(this.getServletContext().getRealPath("/")+ "/boardupload");
+			if(!uploadFile.exists()){
+				uploadFile.mkdir();
+			}
 			String saveDirectory = getServletContext().getRealPath("boardupload");
 
 			int maxPostSize = 10*1024*1024;
@@ -56,17 +48,13 @@ public class AddBoardServlet extends HttpServlet {
 			String board_subtitle = mr.getParameter("subtitle");
 			String board_title = mr.getParameter("title");
 			String board_content = mr.getParameter("board_content");
-			//		String board_file = mr.getParameter("board_file");
 			String board_file = mr.getOriginalFileName("board_file");
 
 			HttpSession session = request.getSession();
-
-			//User user = (User)session.getAttribute("loginInfo");
-			//String loginedId = (String)session.getAttribute("loginInfo");
-			//테스트용 아이디
-			String loginedId = "rlaqhfka";
-			Board board = new Board();
+			String loginedId = (String)session.getAttribute("loginInfo");
 			User user = new User();
+			Board board = new Board();
+
 			user.setUser_id(loginedId);
 			board.setUser(user); //글쓴이 아이디
 			board.setBoard_id(String.valueOf(nextBoardId));//글번호
@@ -87,55 +75,5 @@ public class AddBoardServlet extends HttpServlet {
 			String jsonStr = mapper.writeValueAsString(jacksonMap);
 			out.print(jsonStr);
 		}
-
-
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

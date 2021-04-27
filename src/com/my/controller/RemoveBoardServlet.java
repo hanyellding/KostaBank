@@ -27,12 +27,11 @@ public class RemoveBoardServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Map<String, Object> jacksonMap = new HashMap<>();
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		String board_id = request.getParameter("board_id");
 		BoardService service = new BoardService();
-		
+
 		try {
-			service.removeBoardUp(board_id);
 			service.removeBoardById(board_id);
 			jacksonMap.put("status", 1);
 			String jsonStr = mapper.writeValueAsString(jacksonMap);
@@ -44,7 +43,7 @@ public class RemoveBoardServlet extends HttpServlet {
 			String jsonStr = mapper.writeValueAsString(jacksonMap);
 			out.print(jsonStr);
 		}
-		
+
 	}
 
 }

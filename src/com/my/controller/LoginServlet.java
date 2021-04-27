@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("loginInfo", user.getUser_id());
 
             jacksonMap.put("status", 1);
+            jacksonMap.put("user_adm", user.getUser_adm());
             String jsonStr = mapper.writeValueAsString(jacksonMap);
             out.print(jsonStr);
         } catch (FindException e) {

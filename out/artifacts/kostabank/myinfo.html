@@ -11,12 +11,6 @@
 
     </script>
     <style>
-        body{
-            background-image: url("images/pattern.jpg");
-            background-size: auto;
-            font-family: 'Do Hyeon', sans-serif;
-        }
-
         .menu_logo_alert>div.menu>img:hover{
             cursor: pointer;
         }
@@ -73,7 +67,11 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+    	
+    	
+    
         $(function () {
+        	$(".header").load("headernmenu.html");
             let $categoryObj = $(".category>div");
                 $categoryObj.click(function (event) {
                     $(".mycategory_contents").css({"min-height":"445ox", "height":"auto"});
@@ -84,57 +82,13 @@
                     $(".mycategory_contents").load($category+".html");
                 });
             $(".mainbox>.category>.categoryinfo").trigger("click");
-
-            $('.login>input[type=submit]').click(function () {
-                $.ajax({
-                    url: './login',
-                    method: 'post',
-                    data: {"user_id": $('.login>label>.user_id').val(),
-                        "user_pwd": $('.login>label>.user_pwd').val()},
-                    dataType: "text",
-                    success(data){
-                    }
-                });
-                return false;
-            });
         });
 
     </script>
 </head>
 <body>
-<header>
-    <div class = "mainpage">
-        <input type = "checkbox" id = "check" >
-        <label for ="check">
-            <i class="fas fa-bars" id="btn"></i>
-            <i class="fas fa-times" id="cancel"></i>
-        </label>
-        <div class="sidebar">
-            <div class="sidebar_header">
-                <p>Menu</p>
-                <ul class="login-Info">
-                    <li><i class="fas fa-user" id="user-icon"></i>김수망</li>
-                    <li>sumin0603@naver.com</li>
-                </ul>
-                <div class ="logout-div">
-                    <a href="#" class ="logout-btn">로그아웃<i class="fas fa-sign-out-alt" id ="logout-icon"></i></a>
-                </div>
-            </div>
-            <ul>
-                <li><a href ="#">정보처리기사</a></li>
-                <li><a href ="#">SQLD</a></li>
-                <li><a href ="#">게시판</a></li>
-                <li><a href ="#">마이페이지</a></li>
-                <li><a href ="#">문의사항</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class = "header-icon">
-        <img src="./images/logo.png" id="logo">
-        <i class="far fa-bell" id = "alarm"></i>
-    </div>
-    </div>
-</header>
+<div class = "header">
+</div>
 <div class="myinfo">
     <div class="mainbox">
         <div class="category">
@@ -147,24 +101,13 @@
             <div class="categorysolved">
                 내가 푼 문제
             </div>
-            <div class="categoryquestion">
+            <div class="categoryquestion" style="border-right:transpert">
                 1:1 문의
             </div>
         </div>
         <div class="mycategory_contents">
         </div>
     </div>
-    <div style="height: 50px;"></div>
-    <hr><h1>login</h1>
-    <form class="login">
-        <label> user_id
-            <input type="text" class="user_id"><br>
-        </label>
-        <label> user_pwd
-            <input type="text" class="user_pwd"><br>
-        </label>
-        <input type="submit">
-    </form>
 </div>
 </body>
 </html>

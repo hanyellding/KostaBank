@@ -27,15 +27,13 @@ public class AddBoardUpServlet extends HttpServlet {
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		Map <String, Object> jacksonMap = new HashMap<>();
-		ObjectMapper mapper = new ObjectMapper();	
+		ObjectMapper mapper = new ObjectMapper();
 		BoardService service = new BoardService();
-		HttpSession session = request.getSession();
+
 		String board_id = request.getParameter("board_id");
-		
-		
+		HttpSession session = request.getSession();
+		String user_id = (String)request.getAttribute("loginInfo");
 		try {
-			String loginedId = (String)request.getAttribute("loginInfo");
-			String user_id = loginedId;
 			service.addBoardUp(board_id, user_id);
 			jacksonMap.put("status", 1);
 			String jsonStr = mapper.writeValueAsString(jacksonMap);

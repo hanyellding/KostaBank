@@ -67,6 +67,13 @@ public interface QuestionDAO {
     void insertQTmpByQYear(String user_id, String question_year) throws AddException;
 
     /**
+     * 디비에서 임시 문제 지우고 선택해온 문제를 insert
+     * @param user_id 세션 아이디
+     * @throws AddException question_tmp에 추가 에러
+     */
+    void insertRandomQTmp(String user_id) throws AddException;
+
+    /**
      * row_num으로 찾는 문제 아이디
      * @param user_id 세션에 있는 아이디
      * @param row_num 몇번째 문제

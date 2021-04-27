@@ -16,12 +16,12 @@
             min-height: 445px;
             float: left;
             text-align: right;
-            padding: 50px 30px 50px 0;
+            padding: 50px 40px 50px 0;
         }
         .myinfo_attr>div{
             box-sizing: border-box;
             border: 0;
-            height: calc(340px/5);
+            height: calc(370px/5);
             font-weight: bold;
             font-size: large;
         }
@@ -35,6 +35,15 @@
             text-align: left;
             padding: 50px 0 50px 30px;
         }
+        
+        .value_id, .value_email {
+		    padding-bottom: 45px;
+		}
+		
+		.value_nick, .value_pwd, .value_pwd2 {
+		    margin-bottom: 7px;
+		}
+		
         .myinfo_value>div{
             box-sizing: border-box;
             border: 0;
@@ -42,11 +51,12 @@
             font-size: large;
         }
         .myinfo_value>div>input{
-            box-sizing: border-box;
-            border: 0;
-            background-color: silver;
-            width: 300px;
-            height: 25px;
+            background-color: rgba(180, 180, 180, 0.3);
+			border: none;
+			width: 450px;
+			height: 35px;
+			padding-left: 7px;
+			margin: 5px;
         }
         .myinfo_value>div>div{
             font-size: small;
@@ -59,20 +69,28 @@
             border: 0;
             float: left;
             text-align: right;
-            padding: 50px;
+            padding: 53px 0px 0px 80px;
         }
         .myinfo_btn>div.btn_mod{
+		    border: none;
+		    border-radius: 10px;
+		    width: 90px;
+		    height: 20px;
+		    background: rgb(116, 116, 116);
+		    color: white;
+		    outline: none;   
             position: relative;
-            top: 270px;
-            width: 100px;
+            top: 285px;
             padding: 10px;
             text-align: center;
-            font-size: large;
-            border: 2px solid;
             cursor: pointer;
         }
     </style>
     <script>
+    	var nickValue =false;
+    	var pwdValue =false;
+    	var pwdchkValue = false;
+    	
         $(function () {
             $.ajax({
                 url: './userinfo',
@@ -81,21 +99,7 @@
                     $('.value_id').html(data.user_id);
                     $('.value_email').html(data.user_email);
                 }
-            });
-            $('.btn_mod').click(function () {
-                $.ajax({
-                    url: './moduser',
-                    method: 'post',
-                    data: {"user_nickname":$('.value_nick>input').val(),
-                    "user_pwd":$('.value_pwd>input').val()},
-                    success(data){
-                        console.log(data);
-                        if(data.status === 1){
-                            alert("성공");
-                        }
-                    }
-                });
-            })
+            });            
 
             var nickChk = RegExp(/^[가-힣a-zA-Z0-9]{4,15}$/);
             var user_nickname = $('.value_nick>input');
@@ -110,19 +114,23 @@
                             $('.nick_error_box').show();
                             $('.nick_error_box').html("사용중인 닉네임입니다");
                             $('.nick_error_box').css("color","red");
+                            nickValue =false;
                         } else{
                             if((user_nickname.val()).length == 0){
                                 $('.nick_error_box').show();
                                 $('.nick_error_box').html("기존 닉네임을 사용하시려면 입력하지 말아주세요");
                                 $('.nick_error_box').css("color","dimgray");
+                                nickValue =false;
                             } else if(!(nickChk.test(user_nickname.val()))){
                                 $('.nick_error_box').show();
                                 $('.nick_error_box').html("4~15자의 한글, 영어, 숫자만 입력가능합니다.");
                                 $('.nick_error_box').css("color","red");
+                                nickValue =false;
                             } else {
                                 $('.nick_error_box').show();
                                 $('.nick_error_box').html("멋진 닉네임 입니다!");
                                 $('.nick_error_box').css("color","green");
+                                nickValue =true;
                             }
                         }
                     }
@@ -137,18 +145,21 @@
                     $('.pwd_error_box').show();
                     $('.pwd_error_box').html("기존 비밀번호를 사용하시려면 입력하지 말아주세요");
                     $('.pwd_error_box').css("color","dimgray");
+                    pwdValue =false;
                 } else if(!(pwdChk.test(user_pwd.val()))){
                     $('.pwd_error_box').show();
                     $('.pwd_error_box').html("8~16자 영문 대 소문자, 숫자, 특수문자(!, #, ^, *, -, _, ?)를 하나이상씩 포함하세요.");
                     $('.pwd_error_box').css("color","red");
+                    pwdValue =false;
                 } else {
                     $('.pwd_error_box').show();
                     $('.pwd_error_box').html("멋진 패스워드 입니다!");
                     $('.pwd_error_box').css("color","green");
+                    pwdValue= true;
                 }
                 if(user_pwd.val().length !== 0){
                     $('.value_pwd2>input').removeAttr("disabled");
-                    $('.value_pwd2>input').css("background-color","silver");
+                    $('.value_pwd2>input').css("background-color","rgba(180, 180, 180, 0.3)");
                 }
                 else{
                     $('.value_pwd2>input').css("background-color","unset");
@@ -180,6 +191,25 @@
                     pwdchkValue = true;
                 }
             });
+            
+            $('.btn_mod').click(function () {
+            	if(nickValue == true && pwdValue == true && pwdchkValue ==true){   	 
+  					$.ajax({
+	                    url: './moduser',
+	                    method: 'post',
+	                    data: {"user_nickname":$('.value_nick>input').val(),
+	                    "user_pwd":$('.value_pwd>input').val()},
+	                    success(data){
+	                        console.log(data);
+	                        if(data.status === 1){
+	                            alert("성공");
+                        	}
+                    	}
+                	});
+            	} else {
+            		alert("조건에 맞지 않아 수정이 불가합니다. 확인후 다시 입력해주세요.");
+            	}
+            });
 
         });
     </script>
@@ -205,10 +235,10 @@
         </div>
         <div class="myinfo_value">
             <div class="value_id">
-                wonji
+                
             </div>
             <div class="value_email">
-                wonji@kosta.com
+                
             </div>
             <div class="value_nick">
                 <input type="text">
@@ -219,7 +249,7 @@
                 <div class="pwd_error_box" style="color: dimgray">기존 비밀번호를 사용하시려면 입력하지 말아주세요</div>
             </div>
             <div class="value_pwd2">
-                <input type="password" disabled style="background-color: unset">
+                <input type="password" disabled style ="background-color:unset">
                 <div class="chkpwd_error_box"></div>
             </div>
         </div>

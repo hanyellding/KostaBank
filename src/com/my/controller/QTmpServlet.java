@@ -37,6 +37,7 @@ public class QTmpServlet extends HttpServlet {
             Question q = service.findQTmpByQId(id,row_num);
             jacksonMap.put("question_id",q.getQuestion_id());
             jacksonMap.put("content",q.getContent());
+            jacksonMap.put("explanation",q.getExplanation());
             jacksonMap.put("correct_answer",q.getCorrect_answer());
             jacksonMap.put("correct_percent",((int)(((double)q.getCorrect_answer_count()/(double)q.getTotal_answer_count())*100)));
             jacksonMap.put("total",q.getMn_total());

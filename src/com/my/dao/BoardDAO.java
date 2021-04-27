@@ -70,14 +70,15 @@ public interface BoardDAO {
      * @param user_id 로그인된 아이디
      * @throws AddException
      */
-    void BoardUpInsert (String board_id, String user_id) throws AddException;
+    void BoardUpInsert(String board_id, String user_id) throws AddException;
 
     /**
      * 좋아요 삭제
      * @param board_id 게시글 번호
-     * @throws RemoveException 삭제실패시 예외발생
+     * @param user_id 로그인 아이디
+     * @throws RemoveException
      */
-    void BoradUpDelete(String board_id) throws RemoveException;
+    void BoradUpDelete(String board_id, String user_id) throws RemoveException;
 
     /**
      * 새로 만든 게시판 인서트

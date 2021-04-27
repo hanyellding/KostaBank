@@ -71,6 +71,7 @@ public class HeaderServlet extends HttpServlet {
                 jacksonMap.put("user_id",user.getUser_id());
                 jacksonMap.put("user_nickname",user.getUser_nickname());
                 jacksonMap.put("user_email",user.getUser_email());
+                jacksonMap.put("user_adm",user.getUser_adm());
                 jacksonMap.put("status", -2);
                 jacksonMap.put("msg", e.getMessage()); // 정보가 없을 때
                 String jsonStr = mapper.writeValueAsString(jacksonMap);

@@ -32,40 +32,39 @@ public class AddQaServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Map<String, Object> jacksonMap = new HashMap<>();
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		FeedbackService service = new FeedbackService();
 		try {
 			int nextBoardId = service.findNextQaId();
-	        File uploadFile =  new File(this.getServletContext().getRealPath("/")+ "/qaupload");
-	        if(!uploadFile.exists()){
-	            uploadFile.mkdir();
-	        }
+			File uploadFile =  new File(this.getServletContext().getRealPath("/")+ "/qaupload");
+			if(!uploadFile.exists()){
+				uploadFile.mkdir();
+			}
 			String saveDirectory = getServletContext().getRealPath("qaupload");
 			int maxPostSize = 10*1024*1024;
 			String encoding = "UTF-8";
 			FileRenamePolicy policy = new RenamePolicy(String.valueOf(nextBoardId));
 			MultipartRequest mr = new MultipartRequest(request, saveDirectory,maxPostSize, encoding, policy);
-			
+
 			Qa qa = new Qa();
 			HttpSession session = request.getSession();
-			User user = new User();	
-			
+			User user = new User();
+
 			user = (User)session.getAttribute("loginInfo");
 			String loginedId = (String)session.getAttribute("loginInfo");
-//			String loginedId = "rlaqhfka";
 			user.setUser_id(loginedId);
 			qa.setQa_id(String.valueOf(nextBoardId));//글번호 
 			qa.setUser(user);//로그인된 아이디
 			qa.setQa_title(mr.getParameter("qa_title"));//제목
 			qa.setQa_content(mr.getParameter("qa_content"));//내용
 			qa.setQa_file(mr.getOriginalFileName("qa_file"));//파일
-			
+
 			service.addQa(qa);
-			
+
 			jacksonMap.put("status", 1);
 			String jsonStr = mapper.writeValueAsString(jacksonMap) ;
 			out.print(jsonStr);
-			
+
 		} catch (AddException | FindException e) {
 			e.printStackTrace();
 			jacksonMap.put("status", -1);

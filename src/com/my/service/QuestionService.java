@@ -45,4 +45,7 @@ public class QuestionService {
     public List<Question> findAllQTmpByRound(String user_id,String question_round) throws FindException{
         return dao.selectAfterSolveQByRound(user_id, question_round);
     }
+    public void insertRandomQTmp(String user_id) throws AddException{
+        dao.insertRandomQTmp(user_id);
+    }
 }

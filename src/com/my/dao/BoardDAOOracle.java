@@ -217,14 +217,15 @@ public class BoardDAOOracle implements BoardDAO{
     }
 
     @Override
-    public void BoradUpDelete(String board_id) throws RemoveException {
+    public void BoradUpDelete(String board_id, String user_id) throws RemoveException {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
             con = MyConnection.getConnection();
-            String deleteSQL = "DELETE board_up WHERE board_id =?";
+            String deleteSQL = "DELETE board_up WHERE board_id =? AND user_id = ?";
             pstmt = con.prepareStatement(deleteSQL);
             pstmt.setString(1, board_id);
+            pstmt.setString(2, user_id);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

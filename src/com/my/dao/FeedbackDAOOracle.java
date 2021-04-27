@@ -310,7 +310,32 @@ public class FeedbackDAOOracle implements FeedbackDAO {
 
     @Override
     public void ReportInsert(Report report) throws AddException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
 
+        try {
+            con = MyConnection.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AddException(e.getMessage());
+        }
+
+        String insertSQL = "INSERT INTO report(report_user, report_title, report_content, report_question_id)\r\n" +
+                "    	VALUES (?, ?, ?, ?)";
+
+        try {
+            pstmt = con.prepareStatement(insertSQL);
+            pstmt.setString(1, report.getUser().getUser_id());
+            pstmt.setString(2, report.getReport_title());
+            pstmt.setString(3, report.getReport_content());
+            pstmt.setString(4, report.getQuestion().getQuestion_id());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new AddException();
+        }finally {
+            MyConnection.close(con, pstmt);
+        }
     }
 
     @Override

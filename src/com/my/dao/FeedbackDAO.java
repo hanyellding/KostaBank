@@ -30,7 +30,7 @@ public interface FeedbackDAO {
      * @return QA객체
      * @throws FindException 아이디에 해당하는 유저가 없으면 반환
      */
-    Qa UserQaById(String user_id,int rownum) throws FindException;
+    Qa UserQaById(String user_id, int rownum) throws FindException;
 
     /**
      * 문의아이디로 찾는 문의 내용
@@ -76,7 +76,7 @@ public interface FeedbackDAO {
      * @return 신고 객체
      * @throws FindException 신고 아이디에 대한 신고 없을때
      */
-    Report ReportById(String report_id, int n , int s) throws FindException;
+    Report ReportById(String report_id, int n, int s) throws FindException;
 
     /**
      * 7개씩 끊어서 전체 신고 조회
